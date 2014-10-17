@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        
+        <meta name="HandheldFriendly" content="true" />
+        <meta name="format-detection" content="telephone=no"/>
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+        <title>Media</title>
+        <link href="css/style.css" rel="stylesheet" />
+        <link href="css/bootstrap.css" rel="stylesheet" />
+        <!-- <link href="css/flat-ui.css" rel="stylesheet" /> -->
+
+        
+    </head>
+    
+    <body>
+
+        <div id="header" class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div id="backwards"></div>
+                <div class="position">Le Point G</div>
+            </div>
+        </div>
+       <!--  <div class="menu_right">
+            <p class="nom">Jean Moul</p>
+            <p>Administrateur</p>
+            <p>Partager l'application</p>
+            <p>Mentions Légales</p>
+            <p>Activer les notifications</p>
+            
+            <div class="plus">+</div>
+            <div class="drag"></div>
+            <div class="menu_drag"></div>
+        </div> -->
+
+        <div class="main"></div>
+
+        <nav id="footer" class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+            <div class="container">
+                <ol class="nav navbar-nav">
+                    <li id="alaune" class="active"><a>A la Une</a></li>
+                    <li id="photos" class=""><a>Photos</a></li>
+                    <li id="bestof" class=""><a>Best Of</a></li>
+                    <li id="favoris" class=""><a>Favoris</a></li>
+                    <li id="autres" class=""><a>Autres</a></li>
+                </ol>
+            </div>
+        </nav>
+
+        <!-- === Frameworks === -->
+        <script src="libs/lodash.min.js" type="application/javascript"></script>
+        <script src="libs/jquery/2.1.1/jquery.min.js" type="application/javascript"></script>
+        <script src="libs/jquery.touchSwipe.js"></script>
+        <script src="libs/backbone.js/1.1.2/backbone.js"></script>
+        <script src="libs/backbone.marionette.js"></script>
+        <script src="libs/jquery.cookie/jquery.cookie.js"></script>
+        <script src="libs/transit/transit.min.js" type="application/javascript"></script>
+        <script src="libs/bootstrap.js"></script>
+        <script src="js/fonctions.js"></script>
+
+        <!-- === Template === -->
+        <script type="text/template" id="articles_template">
+            
+            <div id="articles">
+            </div>
+
+        </script>
+        <script type="text/template" id="article_item_template">
+            
+            <div class="article_icon" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= image %>')">                
+            </div>
+            <div class="description_container">
+                <span class="titre"><%= titre %></span>
+            </div>
+            <div class="action_container <%= liked %>">
+                <span class="glyphicon glyphicon-heart"></span>
+            </div>
+
+        </script>
+        <script type="text/template" id="associations_template">
+
+            <div id="bde" class="simple_list associations_item">BDE</div>
+            <div id="bds" class="simple_list associations_item">BDS</div>
+            <div id="bda" class="simple_list associations_item">BDA</div>
+            <div id="media" class="simple_list associations_item">Media</div>
+            <div id="gducoeur" class="simple_list associations_item">G du coeur</div>
+
+        </script>
+        <script type="text/template" id="accueil_template">
+
+            <div id="associations" class="simple_list accueil_item">Associations</div>
+            <div id="pointg" class="simple_list accueil_item">Le Point G</div>
+            <div id="agenda" class="simple_list accueil_item">Agenda</div>
+
+        </script>
+        <script type="text/template" id="photos_template">
+
+            <div class="photos_videos_nav">
+                <div class="photos_nav">Photos</div>
+                <div class="photos_nav">Videos</div>
+            </div>
+            <div class="photos_item_container"></div>
+
+        </script>
+        <script type="text/template" id="article_template">
+            <div class="title_container">
+                <h3><%= titre %></h3>
+            </div>
+            <div class="action_container2 <%= liked %>">
+                <span class="glyphicon glyphicon-heart"></span>
+            </div>
+            <div id="gallery"></div>
+
+        </script>
+        <script type="text/template" id="thumbnail_template">
+
+            <div class="gallery-icon" data-url="<%= url %>" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= url %>')">
+
+        </script>
+        <script type="text/template" id="association_template">
+
+            <h1><%= nom %></h1>
+            <p><%= description %></p>
+            <div class="photos_videos_nav">
+                <div id="image" class="photos_nav">Photos</div>
+                <div id="video" class="photos_nav">Videos</div>
+            </div>
+
+        </script>
+        <script type="text/template" id="gallerie_template">
+            <div class="image" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= album[focusEl] %>')"></div>
+            <div class="tiroir" style="left: <% 100 - focusEl*20 %>">
+                <%
+                album.forEach(function(url){
+                    %><div data-url="<%= url %>" class="preview" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= url %>')"></div><%    
+                })
+
+                %>
+            </div>
+            
+
+        </script>
+        <!-- === Application === -->
+        
+        <script src="js/app.js"></script>
+        <script src="js/accueil.js"></script>
+        <script src="js/gallerie.js"></script>
+        <script src="js/article.js"></script>
+        <script src="js/articles.js"></script>
+        <script src="js/associations.js"></script>
+        <script src="js/association.js"></script>
+        <script src="js/photos.js"></script>
+        <script src="js/initialize.js"></script>
+        <script src="js/controller.js"></script>
+        <script src="js/swipe.js"></script>
+    </body>
+</html>

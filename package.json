@@ -1,0 +1,35 @@
+{
+  "name": "node-js-sample",
+  "version": "0.1.0",
+  "description": "A sample Node.js app using Express 4",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "latest",
+    "ejs": "latest",
+    "express": "latest",
+    "eyes": "latest",
+    "googleapis": "^1.0.14",
+    "multer": "latest",
+    "node-fs": "latest",
+    "pg": "3.x",
+    "sql": "latest"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "author": "",
+  "contributors": [],
+  "license": "MIT"
+}

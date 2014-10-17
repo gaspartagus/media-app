@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        
+        <meta name="HandheldFriendly" content="true" />
+        <meta name="format-detection" content="telephone=no"/>
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+        <title>Create</title>
+        <link href="css/admin.css" rel="stylesheet" />
+        <link href="css/bootstrap.css" rel="stylesheet" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="libs/transit/transit.min.js"></script>
+
+    </head>
+    
+    <body>
+
+    <div class="left">
+    	<ul class="nav nav-tabs" role="tablist">
+			<li id="articles" class="active"><a href="#">Articles</a></li>
+			<li id="associations"><a href="#">Associations</a></li>
+		</ul>
+		<div class="liste">
+		
+		</div>
+    </div>
+    <div class="main"></div>
+
+    <script type="text/template">
+    	<form action="/new-article" method="post">
+			<input name="titre" type="text" placeholder="TITRE"/>
+			<select name="tag">
+				<option value="" disabled selected>TAG</option>
+				<option value="pointg">Point G</option>
+				<option value="bde">BDE</option>
+				<option value="bde">BDE</option>
+				<option value="bds">BDS</option>
+				<option value="bda">BDA</option>
+				<option value="media">Media</option>
+			</select>
+			<select name="type">
+				<option value="" disabled selected>TYPE</option>
+				<option value="image">PHOTOS</option>
+				<option value="video">VIDEO</option>
+				<option value="application">ARTICLE</option>
+				<option value="audio">SON</option>
+			</select>
+			<input name="resume" placeholder="RESUME"/>
+			<input name="folder" placeholder="GOOGLE DRIVE FOLDER ID"/>
+			<input id="drop" name="files" type="text" value="" placeholder="Glisser ici le contenu du dossier"/>
+			<!--p id="drop">Glisser ici le contenu du dossier</p-->
+			<input type="submit">
+		</form>
+    </script>  
+
+
+
+		
+		<script type="text/javascript">
+			var fileList = [];
+
+			var obj = $("#drop");
+			obj.on('dragenter', function (e) {
+			    e.stopPropagation();
+			    e.preventDefault();
+			    $(this).transition({ 'background-color': 'grey' });
+			})
+			.on('dragover', function (e) {
+			     e.stopPropagation();
+			     e.preventDefault();
+			})
+			.on('drop', function (e) {
+			 
+				$(this).transition({ 'background-color': 'transparent' });
+				e.preventDefault();
+				var files = e.originalEvent.dataTransfer.files;
+				//console.log(files);
+				//We need to send dropped files to Server
+				fileList = handleFileUpload(files,obj);
+				console.log(JSON.stringify(fileList))
+				$(this)[0].value = JSON.stringify(fileList)
+			});
+
+			$(document).on('dragenter', function (e) {
+			    e.stopPropagation();
+			    e.preventDefault();
+			})
+			.on('dragover', function (e) {
+			  e.stopPropagation();
+			  e.preventDefault();
+			})
+			.on('drop', function (e) {
+			    e.stopPropagation();
+			    e.preventDefault();
+			});
+
+
+			function handleFileUpload(files,obj)
+			{
+				var fileType = $('select[name=type]')[0].value;
+				var fileList = [];
+				for (var i = files.length - 1; i >= 0; i--) {
+					if(files[i].type.split('/')[0] == fileType)
+						fileList.push(files[i]);
+					
+				};
+				return fileList.map(function(e){ return e.name; });
+				//console.log(fileList);
+			}
+			$('input[name=folder]').on('change',function(el){
+				$.get('https://googledrive.com/host/'+$(this).val(),function(data,err){
+					var jqFiles = $(data).find('.folder-cell a').map(function(index,a){ return $(a).attr('href').split('/')[3] });
+					var files = [];
+					jqFiles.each(function(index,href){
+						if(href.split('.').length>1)
+							files.push(href);
+					})
+	    			$('input[name=files]').val(JSON.stringify(files))
+			    })
+				console.log($(this).val())
+			});
+
+
+		</script>
+	</body>
+</html>

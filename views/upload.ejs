@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        
+        <meta name="HandheldFriendly" content="true" />
+        <meta name="format-detection" content="telephone=no"/>
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+        <title>Upload</title>
+        <link href="css/style.css" rel="stylesheet" />
+		<link href="css/dropzone.css" rel="stylesheet" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<!--script type="text/javascript" src="libs/dropzone.js"></script-->
+		<script type="text/javascript">
+			// Dropzone.options.drop = {
+
+			// 	maxFilesize: 3, // MB
+			// 	maxFiles: 30,
+			// 	autoProcessQueue: true,
+			// 	headers: {
+			// 		album: <%= type %>,
+			// 		_id: <%= _id %>
+			// 	},
+			// 	accept: function(file, done) {
+			// 		if (file.name == "justinbieber.jpg") {
+			// 			done("Naha, you don't.");
+			// 		}
+			// 		else { done(); }
+			// 	}
+			// };
+
+
+
+		</script>
+        
+    </head>
+    
+    <body>
+
+		<form action="/file-upload" class="dropzone" id="drop">
+		  <div class="fallback">
+		    <input name="fichier" type="file" multiple />
+		  </div>
+		</form>
+
+		<script type="text/javascript">
+
+			var obj = $("#drop");
+			obj.on('dragenter', function (e) 
+			{
+			    e.stopPropagation();
+			    e.preventDefault();
+			    $(this).css('border', '2px solid #0B85A1');
+			});
+			obj.on('dragover', function (e) 
+			{
+			     e.stopPropagation();
+			     e.preventDefault();
+			});
+			obj.on('drop', function (e) 
+			{
+			 
+				$(this).css('border', '2px dotted #0B85A1');
+				e.preventDefault();
+				var files = e.originalEvent.dataTransfer.files;
+				console.log(files);
+				//We need to send dropped files to Server
+				handleFileUpload(files,obj);
+			});
+
+			$(document).on('dragenter', function (e) 
+			{
+			    e.stopPropagation();
+			    e.preventDefault();
+			});
+			$(document).on('dragover', function (e) 
+			{
+			  e.stopPropagation();
+			  e.preventDefault();
+			  obj.css('border', '2px dotted #0B85A1');
+			});
+			$(document).on('drop', function (e) 
+			{
+			    e.stopPropagation();
+			    e.preventDefault();
+			});
+
+
+			function handleFileUpload(files,obj)
+			{
+			   
+			}
+
+
+		</script>
+		
+	</body>
+</html>
