@@ -121,7 +121,7 @@ var myController = Backbone.Router.extend({
 	},
 	bestof: function() {
 
-		$.get(' http://infinite-brook-7927.herokuapp.com/bestof',function(best){
+		$.get('bestof',function(best){
 			console.log(best);
 			localArticles.forEach(function(article){
 				var sel = _.find(best,{article_id: article._id});
