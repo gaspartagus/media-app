@@ -1,4 +1,4 @@
-app.models.ArticleItem = Backbone.Model.extend({
+app.models.Article = Backbone.Model.extend({
     defaults: {
         image: '',
         association: 'BDE',
@@ -13,7 +13,7 @@ app.models.ArticleItem = Backbone.Model.extend({
 });
 
 app.collections.Articles = Backbone.Collection.extend({
-	model: app.models.ArticleItem
+	model: app.models.Article
 });
 
 app.views.ArticleItem = Backbone.Marionette.ItemView.extend({
@@ -32,15 +32,29 @@ app.views.ArticleItem = Backbone.Marionette.ItemView.extend({
 	}
 });
 
-app.views.Photos = Backbone.Marionette.CompositeView.extend({
+app.views.Articles = Backbone.Marionette.CompositeView.extend({
 	tagName: "div",
 	className: "main_nav",
-	template: "#photos_template",
+	template: "#articles_template",
 	childView: app.views.ArticleItem,
-	childViewContainer: ".photos_item_container",
+	childViewContainer: ".articles_item_container",
+
+	events: {
+		'click .new_article': function(elem) {
+			var articleModel = new app.models.Article();
+			app.tableau.show(new app.views.Article({ model: articleModel }));
+		}
+	}
+});
+
+app.views.Article = Backbone.Marionette.ItemView.extend({
+	tagName: "div",
+	className: "main_nav",
+	template: "#article_template",
 
 	events: {
 		'click .photos_nav': function(elem) {
+			// down(this.model.attributes.nom);
 			var tag = this.model.attributes.nom,
 				type = elem.currentTarget.id;
 			app.controller.articles(tag,type);

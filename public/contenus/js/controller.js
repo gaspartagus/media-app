@@ -12,14 +12,15 @@ var myController = Backbone.Router.extend({
 	},
 	associations: function(){
 		var collection = new app.collections.Articles(localAssociations);
-		var articlesView = new app.views.Photos({
+		var assosView = new app.views.Assos({
 			collection: collection
 		});
+		app.articlesRegion.show(assosView);
 	},
 	articles: function(tag,type){
 		var selection = _.sortBy(localArticles,"date");
 		var collection = new app.collections.Articles(selection);
-		var articlesView = new app.views.Photos({
+		var articlesView = new app.views.Articles({
 			collection: collection
 		});
 		app.articlesRegion.show(articlesView);
@@ -27,7 +28,7 @@ var myController = Backbone.Router.extend({
 	article: function(id){
 		var article = _.where(localArticles, {_id: parseInt(id)})[0];
 		console.log(localArticles);
-		var articleModel = new app.models.ArticleItem(article);
+		var articleModel = new app.models.Article(article);
 		app.tableau.show(new app.views.Article({ model: articleModel }));
 
 		Backbone.history.navigate("article/"+ id);
