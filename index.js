@@ -22,7 +22,7 @@ var log = console.log.bind(console);
 
 var interval = setInterval(function(){
 	log('Alive');
-})
+}, 2000)
 
 var allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', "*");
