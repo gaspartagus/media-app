@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Media</title>
+        <link href="bootstrap.css" rel="stylesheet" />
+        <style type="text/css">
+        .article_icon{
+                width: 20px;
+                height: 20px;
+                background-size: cover;
+                background-position: center;
+                border-radius: 77px;
+                margin: 2px 14px;
+                display: inline-block;
+        }
+        </style>
+
+        
+    </head>
+    
+    <body>
+
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active"><a href="#articles" role="tab" data-toggle="tab">News</a></li>
+                    <li><a href="#associations" role="tab" data-toggle="tab">Associations</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="articles">articles</div>
+                    <div class="tab-pane" id="associations">associations</div>
+                </div>
+            </div>
+            <div id="tableau" class="col-md-9">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="titre">Titre</label>
+                        <input name="titre" type="text" class="form-control" id="titre" placeholder="Titre">
+                    </div>
+                    <div class="form-group">
+                        <label for="resume">Résumé</label>
+                        <input name="resume" type="text" class="form-control" id="resume" placeholder="Résumé">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input name="date" type="date" class="form-control" id="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="folder">Dossier</label>
+                        <input name="folder" type="text" class="form-control" id="folder" placeholder="URL du dossier Google Drive">
+                    </div>
+                    <div class="form-group">
+                        <select name="tag" class="form-control">
+                            <option value="" disabled selected>TAG</option>
+                            <option value="pointg">Point G</option>
+                            <option value="bde">BDE</option>
+                            <option value="bde">BDE</option>
+                            <option value="bds">BDS</option>
+                            <option value="bda">BDA</option>
+                            <option value="media">Media</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="type" class="form-control">
+                            <option value="" disabled selected>TYPE</option>
+                            <option value="image">PHOTOS</option>
+                            <option value="video">VIDEO</option>
+                            <option value="application">ARTICLE</option>
+                            <option value="audio">SON</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- === Frameworks === -->
+        <script src="../libs/lodash.min.js" type="application/javascript"></script>
+        <script src="../libs/jquery/2.1.1/jquery.min.js" type="application/javascript"></script>
+        <script src="../libs/jquery.touchSwipe.js"></script>
+        <script src="../libs/backbone.js/1.1.2/backbone.js"></script>
+        <script src="../libs/backbone.marionette.js"></script>
+        <script src="../libs/jquery.cookie/jquery.cookie.js"></script>
+        <script src="../libs/transit/transit.min.js" type="application/javascript"></script>
+        <script src="../libs/bootstrap.js"></script>
+
+        <!-- === Template === -->
+        <script type="text/template" id="articles_template">
+            
+            <div id="articles">
+            </div>
+
+        </script>
+        <script type="text/template" id="article_item_template">
+            
+            <span class="article_icon" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= image %>')">...              
+            </span>
+            <span class="description_container">
+                <span class="titre"><%= titre %></span>
+            </span>
+
+        </script>
+        <script type="text/template" id="article_template">
+
+            <form role="form">
+                <div class="form-group">
+                    <label for="titre">Titre</label>
+                    <input name="titre" type="text" class="form-control" id="titre" value="<%= titre %>">
+                </div>
+                <div class="form-group">
+                    <label for="resume">Résumé</label>
+                    <input name="resume" type="text" class="form-control" id="resume" value="<%= resume %>">
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input name="date" type="date" class="form-control" id="date" value="<%= date %>">
+                </div>
+                <div class="form-group">
+                    <label for="folder">Dossier</label>
+                    <input name="folder" type="text" class="form-control" id="folder" placeholder="URL du dossier Google Drive" value="<%= folder %>">
+                </div>
+                <div class="form-group">
+                    <select name="tag" class="form-control">
+                        <%
+                        for (var i = localAssos.length - 1; i >= 0; i--) {
+                            %>
+                            <option value="<%= localAssos[i].nom %>"><%= localAssos[i].nom %></option>
+                            <%
+                        };
+                        %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select name="type" class="form-control">
+                        <option value="" disabled selected>TYPE</option>
+                        <option value="image">PHOTOS</option>
+                        <option value="video">VIDEO</option>
+                        <option value="application">ARTICLE</option>
+                        <option value="audio">SON</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+        </script>
+        <script type="text/template" id="association_template">
+
+            <form role="form">
+                <div class="form-group">
+                    <label for="nom">Titre</label>
+                    <input name="nom" type="text" class="form-control" id="nom" value="<%= nom %>">
+                </div>
+                <div class="form-group">
+                    <label for="description">Résumé</label>
+                    <input name="description" type="text" class="form-control" id="description" value="<%= description %>">
+                </div>
+                <div class="form-group">
+                    <label for="icone">Date</label>
+                    <input name="icone" type="text" class="form-control" id="icone" value="<%= icone %>">
+                </div>
+                
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+
+        </script>
+        <script type="text/template" id="associations_template">
+
+            <div id="bde" class="simple_list associations_item">BDE</div>
+            <div id="bds" class="simple_list associations_item">BDS</div>
+            <div id="bda" class="simple_list associations_item">BDA</div>
+            <div id="media" class="simple_list associations_item">Media</div>
+            <div id="gducoeur" class="simple_list associations_item">G du coeur</div>
+
+        </script>
+        <script type="text/template" id="accueil_template">
+
+            <div id="associations" class="simple_list accueil_item">Associations</div>
+            <div id="pointg" class="simple_list accueil_item">Le Point G</div>
+            <div id="agenda" class="simple_list accueil_item">Agenda</div>
+
+        </script>
+        <script type="text/template" id="photos_template">
+
+            <div class="photos_videos_nav"></div>
+            <div class="photos_item_container"></div>
+
+        </script>
+        <script type="text/template" id="thumbnail_template">
+
+            <div class="gallery-icon" data-url="<%= url %>" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= url %>')">
+
+        </script>
+        <script type="text/template" id="gallerie_template">
+            <div class="image" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= album[focusEl] %>')"></div>
+            <div class="tiroir" style="left: <% 100 - focusEl*20 %>">
+                <%
+                album.forEach(function(url){
+                    %><div data-url="<%= url %>" class="preview" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= url %>')"></div><%    
+                })
+
+                %>
+            </div>
+            
+
+        </script>
+        <!-- === Application === -->
+        
+        <script src="js/app.js"></script>
+        <!--<script src="js/accueil.js"></script>-->
+        <script src="js/articles.js"></script>
+        <script src="js/article.js"></script>
+        <script src="js/association.js"></script>
+        <script src="js/initialize.js"></script>
+        <script src="js/controller.js"></script>
+    </body>
+</html>

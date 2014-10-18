@@ -36,7 +36,11 @@ app.use( allowCrossDomain );
 pg.connect(process.env.DATABASE_URL, function(err, client) {
 
 
-	app.get('/touslesarticles', function(req, res) {
+	app.set('port', (process.env.PORT || 5000))
+	.use(express.static(__dirname + '/public'))
+	
+
+	.get('/touslesarticles', function(req, res) {
 	    console.log('GET touslesarticles');
 		var getArticles = client.query(
 	       "SELECT * FROM articles",
@@ -45,8 +49,15 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 	    		res.json(result.rows)
     		});
 	})
-	app.set('port', (process.env.PORT || 5000))
-	.use(express.static(__dirname + '/public'))
+	.get('/touteslesassos', function(req, res) {
+	    console.log('GET touteslesassos');
+		var getAssos = client.query(
+	       "SELECT * FROM associations",
+	    	function(err,result){
+	    		console.log(result.rows)
+	    		res.json(result.rows)
+    		});
+	})
 // 	.use(multer({
 // 		dest: './uploads/'
 // 	}))
@@ -175,12 +186,13 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 
 		   
 		
-		var update = client.query("INSERT INTO articles (titre,resume,tag,folder,files,type) VALUES ('"
+		var update = client.query("INSERT INTO articles (titre,resume,tag,folder,files,date,type) VALUES ('"
 			+ req.body.titre +"','"
 			+ req.body.resume +"','"
 			+ req.body.tag +"','"
 			+ req.body.folder +"','"
 			+ req.body.files +"','"
+			+ req.body.date +"','"
 			+ req.body.type
 			+ "')");
 
@@ -197,6 +209,21 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 		console.log(insertionString);
 		var insertion = client.query(insertionString.slice(0,-1));
 		res.json({status: 'OK'});
+	})
+	.post('/nouvelle-asso', function(req, res) {
+
+	    console.log('POST nouvelle-asso')
+
+	    console.log(req.body)
+
+		   
+		
+		var update = client.query("INSERT INTO associations (nom,description,icone) VALUES ('"
+			+ req.body.nom +"','"
+			+ req.body.description +"','"
+			+ req.body.icone
+			+ "')");
+
 	});
 
 
