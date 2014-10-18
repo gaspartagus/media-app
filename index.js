@@ -17,6 +17,13 @@ var DATABASE_URL = 'postgres://rxczkdjyebmxfl:b8uvjvix4Z2yflVth3n1a4tOjv@ec2-54-
 var currentArticle,
 	currentArticleId;
 
+
+var log = console.log.bind(console);
+
+var interval = setInterval(function(){
+	log('Alive');
+})
+
 var allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', "*");
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
