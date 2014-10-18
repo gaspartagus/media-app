@@ -36,15 +36,15 @@ app.use( allowCrossDomain );
 pg.connect(process.env.DATABASE_URL, function(err, client) {
 
 
-// 	app.get('/touslesarticles', function(req, res) {
-// 	    console.log('GET touslesarticles');
-// 		var getArticles = client.query(
-// 	       "SELECT * FROM articles",
-// 	    	function(err,result){
-// 	    		console.log(result.rows)
-// 	    		res.json(result.rows)
-//     		});
-// 	})
+	app.get('/touslesarticles', function(req, res) {
+	    console.log('GET touslesarticles');
+		var getArticles = client.query(
+	       "SELECT * FROM articles",
+	    	function(err,result){
+	    		console.log(result.rows)
+	    		res.json(result.rows)
+    		});
+	})
 	app.set('port', (process.env.PORT || 5000))
 	.use(express.static(__dirname + '/public'))
 // 	.use(multer({
@@ -69,14 +69,14 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 // 	    });
 
 // 	})
-// 	.get('/bestof',function(req,res){
-// 		var getBests = client.query(
-// 	        "SELECT article_id, count(article_id) as popularity FROM profiles GROUP BY article_id ORDER BY popularity DESC",
-// 	    	function(err,result){
-// 	    		console.log(result.rows)
-// 	    		res.json(result.rows)
-//     		});
-// 	})
+	.get('/bestof',function(req,res){
+		var getBests = client.query(
+	        "SELECT article_id, count(article_id) as popularity FROM profiles GROUP BY article_id ORDER BY popularity DESC",
+	    	function(err,result){
+	    		console.log(result.rows)
+	    		res.json(result.rows)
+    		});
+	})
 
 
 
@@ -167,37 +167,37 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 
 // 	});
 
-// 	app.post('/new-article', function(req, res) {
-// 	    // get the temporary location of the file
-// 	    console.log('POST new-article')
+	app.post('/new-article', function(req, res) {
+	    // get the temporary location of the file
+	    console.log('POST new-article')
 
-// 	    console.log(req.body)
+	    console.log(req.body)
 
 		   
 		
-// 		var update = client.query("INSERT INTO articles (titre,resume,tag,folder,files,type) VALUES ('"
-// 			+ req.body.titre +"','"
-// 			+ req.body.resume +"','"
-// 			+ req.body.tag +"','"
-// 			+ req.body.folder +"','"
-// 			+ req.body.files +"','"
-// 			+ req.body.type
-// 			+ "')");
+		var update = client.query("INSERT INTO articles (titre,resume,tag,folder,files,type) VALUES ('"
+			+ req.body.titre +"','"
+			+ req.body.resume +"','"
+			+ req.body.tag +"','"
+			+ req.body.folder +"','"
+			+ req.body.files +"','"
+			+ req.body.type
+			+ "')");
 
-// 	})
-// 	.post('/profile',function(req,res){
-// 		console.log('POST profile');
-// 		console.log(req.body)
-// 		var deletion = client.query("DELETE FROM profiles WHERE user_id='"+ req.body.user_id +"'");
+	})
+	.post('/profile',function(req,res){
+		console.log('POST profile');
+		console.log(req.body)
+		var deletion = client.query("DELETE FROM profiles WHERE user_id='"+ req.body.user_id +"'");
 
-// 		var insertionString = "INSERT INTO profiles (article_id, user_id) VALUES ";
-// 		for (var i = req.body.favoris.length - 1; i >= 0; i--) {
-// 			insertionString += "(" + parseInt(req.body.favoris[i]) + "," + req.body.user_id + "),"
-// 		};
-// 		console.log(insertionString);
-// 		var insertion = client.query(insertionString.slice(0,-1));
-// 		res.json({status: 'OK'});
-// 	})
+		var insertionString = "INSERT INTO profiles (article_id, user_id) VALUES ";
+		for (var i = req.body.favoris.length - 1; i >= 0; i--) {
+			insertionString += "(" + parseInt(req.body.favoris[i]) + "," + req.body.user_id + "),"
+		};
+		console.log(insertionString);
+		var insertion = client.query(insertionString.slice(0,-1));
+		res.json({status: 'OK'});
+	});
 
 
 
@@ -206,3 +206,5 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 	})
 
 });
+
+
