@@ -11,27 +11,27 @@ var express = require('express')
 	// , google = require('googleapis'
 	// , OAuth2 = google.auth.OAuth2;
 ;
-// var DATABASE_URL = 'postgres://rxczkdjyebmxfl:b8uvjvix4Z2yflVth3n1a4tOjv@ec2-54-246-81-118.eu-west-1.compute.amazonaws.com:5432/devrau91ujvtbo'
-// 	+ '?ssl=true';
+var DATABASE_URL = 'postgres://rxczkdjyebmxfl:b8uvjvix4Z2yflVth3n1a4tOjv@ec2-54-246-81-118.eu-west-1.compute.amazonaws.com:5432/devrau91ujvtbo'
+	+ '?ssl=true';
 
-// var currentArticle,
-// 	currentArticleId;
+var currentArticle,
+	currentArticleId;
 
 
-// var log = console.log.bind(console);
+var log = console.log.bind(console);
 
 var interval = setInterval(function(){
 	console.log('Alive');
 }, 2000)
 
-// var allowCrossDomain = function(req, res, next) {
-//   res.header('Access-Control-Allow-Origin', "*");
-//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-//   res.header('Access-Control-Allow-Headers', 'Content-Type');
-//   next();
-// }
+var allowCrossDomain = function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+}
 
-// app.use( allowCrossDomain );
+app.use( allowCrossDomain );
 
 // pg.connect(DATABASE_URL, function(err, client) {
 
@@ -45,8 +45,8 @@ var interval = setInterval(function(){
 // 	    		res.json(result.rows)
 //     		});
 // 	})
-// 	app.set('port', (process.env.PORT || 5000))
-// 	.use(express.static(__dirname + '/public'))
+	app.set('port', (process.env.PORT || 5000))
+	.use(express.static(__dirname + '/public'))
 // 	.use(multer({
 // 		dest: './uploads/'
 // 	}))
@@ -201,8 +201,8 @@ var interval = setInterval(function(){
 
 
 
-// 	app.listen(app.get('port'), function() {
-// 	  console.log("Node app is running at localhost:" + app.get('port'))
-// 	})
+	app.listen(app.get('port'), function() {
+	  console.log("Node app is running at localhost:" + app.get('port'))
+	})
 
 // });
