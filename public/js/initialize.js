@@ -6,7 +6,7 @@ $(document).ready(function(){
 	app.start();
 
 	if(!localStorage.getItem('articles')) {
-		$.get(' http://infinite-brook-7927.herokuapp.com/touslesarticles',function(data){
+		$.get('touslesarticles',function(data){
 			localArticles = data;
 			localStorage.articles = JSON.stringify(data);
 		});

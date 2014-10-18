@@ -70,7 +70,7 @@ app.views.MenuBottom = Backbone.Marionette.ItemView.extend({
 		'click #bestof': function(elem) {
 			app.controller.bestof();
 			console.log('post profile')
-			$.post('/profile',{favoris: favoris, user_id: user_id},function(data){
+			$.post('profile',{favoris: favoris, user_id: user_id},function(data){
 				console.log(data);
 			})
 		},
