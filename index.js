@@ -1,16 +1,16 @@
-// var express = require('express')
-// 	, app = express()
-// 	, fs = require('fs')
-// 	, eyes = require('eyes')
-// 	, multer  = require('multer')
-// 	, pg = require('pg')
-// 	, sql = require('sql')
-// 	, bodyParser = require('body-parser')
-// 	, ejs = require('ejs')
-// 	, $ = require('jquery')(require("jsdom").jsdom().parentWindow);
-// 	// , google = require('googleapis'
-// 	// , OAuth2 = google.auth.OAuth2;
-// ;
+var express = require('express')
+	, app = express()
+	, fs = require('fs')
+	, eyes = require('eyes')
+	, multer  = require('multer')
+	, pg = require('pg')
+	, sql = require('sql')
+	, bodyParser = require('body-parser')
+	, ejs = require('ejs')
+	// , $ = require('jquery')(require("jsdom").jsdom().parentWindow);
+	// , google = require('googleapis'
+	// , OAuth2 = google.auth.OAuth2;
+;
 // var DATABASE_URL = 'postgres://rxczkdjyebmxfl:b8uvjvix4Z2yflVth3n1a4tOjv@ec2-54-246-81-118.eu-west-1.compute.amazonaws.com:5432/devrau91ujvtbo'
 // 	+ '?ssl=true';
 
