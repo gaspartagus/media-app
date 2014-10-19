@@ -34,48 +34,7 @@
                     <div class="tab-pane" id="associations">associations</div>
                 </div>
             </div>
-            <div id="tableau" class="col-md-9">
-                <form role="form">
-                    <div class="form-group">
-                        <label for="titre">Titre</label>
-                        <input name="titre" type="text" class="form-control" id="titre" placeholder="Titre">
-                    </div>
-                    <div class="form-group">
-                        <label for="resume">Résumé</label>
-                        <input name="resume" type="text" class="form-control" id="resume" placeholder="Résumé">
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Date</label>
-                        <input name="date" type="date" class="form-control" id="date">
-                    </div>
-                    <div class="form-group">
-                        <label for="folder">Dossier</label>
-                        <input name="folder" type="text" class="form-control" id="folder" placeholder="URL du dossier Google Drive">
-                    </div>
-                    <div class="form-group">
-                        <select name="tag" class="form-control">
-                            <option value="" disabled selected>TAG</option>
-                            <option value="pointg">Point G</option>
-                            <option value="bde">BDE</option>
-                            <option value="bde">BDE</option>
-                            <option value="bds">BDS</option>
-                            <option value="bda">BDA</option>
-                            <option value="media">Media</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select name="type" class="form-control">
-                            <option value="" disabled selected>TYPE</option>
-                            <option value="image">PHOTOS</option>
-                            <option value="video">VIDEO</option>
-                            <option value="application">ARTICLE</option>
-                            <option value="audio">SON</option>
-                        </select>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-default">Sauvegarder</button>
-                </form>
-            </div>
+            <div id="tableau" class="col-md-9"></div>
         </div>
 
 
@@ -162,6 +121,15 @@
                 <button class="nouvelle_asso btn btn-default">Ajouter</button>
             </div>
             <div class="associations_item_container"></div>
+
+        </script>
+        <script type="text/template" id="association_item_template">
+            
+            <span class="article_icon" style="background-image: url('<%= icone %>')">...              
+            </span>
+            <span class="description_container">
+                <span class="titre"><%= nom %></span>
+            </span>
 
         </script>
         <script type="text/template" id="association_template">

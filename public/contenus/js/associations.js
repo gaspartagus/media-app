@@ -17,7 +17,7 @@ app.views.ArticleItem = Backbone.Marionette.ItemView.extend({
 
 	events: {
 		'click': function(elem) {
-			app.controller.article(this.model.attributes.nom);
+			app.controller.association(this.model.attributes.nom);
 		},
 	}
 });
