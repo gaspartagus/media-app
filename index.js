@@ -212,8 +212,8 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 
 	    console.log('POST nouvelle-asso')
 
-	    eyes.inspect(Object.keys(req))
-	    eyes.inspect(req.body)
+	    // eyes.inspect(Object.keys(req))
+	    // eyes.inspect(req.body)
 
 		   
 		
