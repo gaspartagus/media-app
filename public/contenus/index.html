@@ -5,6 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Media</title>
         <link href="bootstrap.css" rel="stylesheet" />
+        <link href="redactor.css" rel="stylesheet" />
         <style type="text/css">
         .article_icon{
                 width: 20px;
@@ -87,6 +88,7 @@
         <script src="../libs/jquery.cookie/jquery.cookie.js"></script>
         <script src="../libs/transit/transit.min.js" type="application/javascript"></script>
         <script src="../libs/bootstrap.js"></script>
+        <script src="js/redactor.min.js"></script>
 
         <!-- === Template === -->
         <script type="text/template" id="articles_template">
@@ -108,14 +110,14 @@
         </script>
         <script type="text/template" id="article_template">
 
-            <form role="form">
+            <form role="form" id="article_form">
                 <div class="form-group">
                     <label for="titre">Titre</label>
                     <input name="titre" type="text" class="form-control" id="titre" value="<%= titre %>">
                 </div>
                 <div class="form-group">
                     <label for="resume">Résumé</label>
-                    <input name="resume" type="text" class="form-control" id="resume" value="<%= resume %>">
+                    <textarea name="resume" type="text" class="form-control" id="resume" value="<%= resume %>"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="date">Date</label>
@@ -145,6 +147,10 @@
                         <option value="audio">SON</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="files">Code à coller pour partager une vidéo ou un son</label>
+                    <input name="files" type="text" class="form-control" id="files" value="<%= files %>">
+                </div>
                 
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
@@ -160,17 +166,17 @@
         </script>
         <script type="text/template" id="association_template">
 
-            <form role="form">
+            <form role="form" id="asso_form" action="nouvelle-asso" method="post">
                 <div class="form-group">
                     <label for="nom">Titre</label>
                     <input name="nom" type="text" class="form-control" id="nom" value="<%= nom %>">
                 </div>
                 <div class="form-group">
-                    <label for="description">Résumé</label>
-                    <input name="description" type="text" class="form-control" id="description" value="<%= description %>">
+                    <label for="description">Description</label>
+                    <textarea name="description" type="text" class="form-control" id="description" value="<%= description %>"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="icone">Date</label>
+                    <label for="icone">Icone</label>
                     <input name="icone" type="text" class="form-control" id="icone" value="<%= icone %>">
                 </div>
                 

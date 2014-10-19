@@ -38,7 +38,11 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 
 	app.set('port', (process.env.PORT || 5000))
 	.use(express.static(__dirname + '/public'))
-	
+	.use(multer({
+		dest: './uploads/'
+	}));
+	app.use( bodyParser.json() );       // to support JSON-encoded bodies
+	app.use( bodyParser.urlencoded() )
 
 	.get('/touslesarticles', function(req, res) {
 	    console.log('GET touslesarticles');
@@ -58,11 +62,6 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 	    		res.json(result.rows)
     		});
 	})
-// 	.use(multer({
-// 		dest: './uploads/'
-// 	}))
-// 	app.use( bodyParser.json() );       // to support JSON-encoded bodies
-// 	app.use( bodyParser.urlencoded() );
 
 // 	app.get('/upload', function(request, response) {
 // 	    console.log('GET upload')
@@ -177,8 +176,20 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 
 
 // 	});
+	.post('/profile',function(req,res){
+		console.log('POST profile');
+		console.log(req.body)
+		var deletion = client.query("DELETE FROM profiles WHERE user_id='"+ req.body.user_id +"'");
 
-	app.post('/new-article', function(req, res) {
+		var insertionString = "INSERT INTO profiles (article_id, user_id) VALUES ";
+		for (var i = req.body.favoris.length - 1; i >= 0; i--) {
+			insertionString += "(" + parseInt(req.body.favoris[i]) + "," + req.body.user_id + "),"
+		};
+		console.log(insertionString);
+		var insertion = client.query(insertionString.slice(0,-1));
+		res.json({status: 'OK'});
+	})
+	app.post('/contenus/new-article', function(req, res) {
 	    // get the temporary location of the file
 	    console.log('POST new-article')
 
@@ -197,24 +208,12 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 			+ "')");
 
 	})
-	.post('/profile',function(req,res){
-		console.log('POST profile');
-		console.log(req.body)
-		var deletion = client.query("DELETE FROM profiles WHERE user_id='"+ req.body.user_id +"'");
-
-		var insertionString = "INSERT INTO profiles (article_id, user_id) VALUES ";
-		for (var i = req.body.favoris.length - 1; i >= 0; i--) {
-			insertionString += "(" + parseInt(req.body.favoris[i]) + "," + req.body.user_id + "),"
-		};
-		console.log(insertionString);
-		var insertion = client.query(insertionString.slice(0,-1));
-		res.json({status: 'OK'});
-	})
-	.post('/nouvelle-asso', function(req, res) {
+	.post('/contenus/nouvelle-asso', function(req, res) {
 
 	    console.log('POST nouvelle-asso')
 
-	    console.log(req.body)
+	    eyes.inspect(Object.keys(req))
+	    eyes.inspect(req.body)
 
 		   
 		

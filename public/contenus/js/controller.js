@@ -11,11 +11,11 @@ var myController = Backbone.Router.extend({
 		"associations": 'associations'
 	},
 	associations: function(){
-		var collection = new app.collections.Articles(localAssociations);
-		var assosView = new app.views.Assos({
+		var collection = new app.collections.Articles(localAssos);
+		var assosView = new app.views.Associations({
 			collection: collection
 		});
-		app.articlesRegion.show(assosView);
+		app.associationsRegion.show(assosView);
 	},
 	articles: function(tag,type){
 		var selection = _.sortBy(localArticles,"date");

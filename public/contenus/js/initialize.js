@@ -10,6 +10,6 @@ $(document).ready(function(){
 
 	$.get('http://nameless-ravine-5052.herokuapp.com/touteslesassos',function(data){
 		localAssos = data;
-		app.controller.associations();
 	});
+		app.controller.associations();
 });

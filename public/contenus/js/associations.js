@@ -46,11 +46,21 @@ app.views.Association = Backbone.Marionette.ItemView.extend({ // Vue tableau
 	template: "#association_template",
 
 	events: {
-		'click .photos_nav': function(elem) {
-			// down(this.model.attributes.nom);
-			var tag = this.model.attributes.nom,
-				type = elem.currentTarget.id;
-			app.controller.articles(tag,type);
+		'click textarea': function(e){
+			$(e.currentTarget).redactor({ focus: true });
+		},
+		'click button[type=submit]': function(e) {
+			e.preventDefault();
+
+			var post = {
+				nom: $( "#asso_form input[name=nom]" ).val(),
+				description: $( "#asso_form textarea[name=description]" ).val(),
+				icone: $( "#asso_form input[name=icone]" ).val()
+			}
+			console.log(post)
+
+
+			$.post( "nouvelle-asso", post );
 		}
 	}
 });

@@ -1,14 +1,12 @@
 app.models.Article = Backbone.Model.extend({
     defaults: {
         image: '',
-        association: 'BDE',
-        evenement: 'Orgie',
-        date: 'Hier',
-        titre: 'Titre',
-        accroche: 'Phrase d\'accroche',
-        descriptif: 'Descriptif',
-        folder:"",
-        files:""
+        tag: '',
+        date: 0,
+        titre: '',
+        resume: '',
+        folder: '',
+        files: ''
     }
 });
 
@@ -41,6 +39,7 @@ app.views.Articles = Backbone.Marionette.CompositeView.extend({
 
 	events: {
 		'click .new_article': function(elem) {
+			console.log('nouveau')
 			var articleModel = new app.models.Article();
 			app.tableau.show(new app.views.Article({ model: articleModel }));
 		}
@@ -53,11 +52,30 @@ app.views.Article = Backbone.Marionette.ItemView.extend({
 	template: "#article_template",
 
 	events: {
-		'click .photos_nav': function(elem) {
-			// down(this.model.attributes.nom);
-			var tag = this.model.attributes.nom,
-				type = elem.currentTarget.id;
-			app.controller.articles(tag,type);
+		'click textarea': function(e){
+			$(e.currentTarget).redactor({ focus: true });
+		},
+		'change select[name=type]': function(e){
+			console.log('change you bastard')
+
+
+		},
+		'click button[type=submit]': function(e) {
+			e.preventDefault();
+
+			var post = {
+				titre: $( "#article_form input[name=titre]" ).val(),
+				resume: $( "#article_form textarea[name=resume]" ).val(),
+				date: $( "#article_form input[name=date]" ).val(),
+				folder: $( "#article_form input[name=folder]" ).val(),
+				tag: $( "#article_form select[name=tag]" ).val(),
+				type: $( "#article_form select[name=type]" ).val(),
+				files: $( "#article_form input[name=files]" ).val()
+			}
+			console.log(post)
+
+
+			$.post( "new-article", post );
 		}
 	}
 });
