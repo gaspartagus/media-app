@@ -55,6 +55,23 @@ app.views.Article = Backbone.Marionette.ItemView.extend({
 		'click textarea': function(e){
 			$(e.currentTarget).redactor({ focus: true });
 		},
+		'change input[name=folder]': function(e){
+			var strings = $(this).val().split('/');
+			var folder = strings[strings.length - 1];
+			$(this).val(folder);
+			$.get('https://googledrive.com/host/' + folder, function(data,err){
+				var jqFiles = $(data).find('.folder-cell a').map(function(index,a){ return $(a).attr('href').split('/')[3] });
+				var files = [];
+				jqFiles.each(function(index,href){
+					if(href.split('.').length>1)
+						files.push(href);
+				})
+    			$('input[name=files]').val(JSON.stringify(files))
+				console.log(folder,files);
+		    })
+
+
+		},
 		'change select[name=type]': function(e){
 			console.log('change you bastard')
 

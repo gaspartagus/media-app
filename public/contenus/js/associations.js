@@ -1,7 +1,7 @@
 app.models.Association = Backbone.Model.extend({
     defaults: {
-    	nom: "bde",
-    	description: "Une association de gens heureux",
+    	nom: "",
+    	description: "",
     	icone: ""
     }
 });
