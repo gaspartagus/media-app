@@ -56,9 +56,10 @@ app.views.Article = Backbone.Marionette.ItemView.extend({
 			$(e.currentTarget).redactor({ focus: true });
 		},
 		'change input[name=folder]': function(e){
-			var strings = $(this).val().split('/');
+			console.log(e.currentTarget.value);
+			var strings = e.currentTarget.value.split('/');
 			var folder = strings[strings.length - 1];
-			$(this).val(folder);
+			$(e.currentTarget).val(folder);
 			$.get('https://googledrive.com/host/' + folder, function(data,err){
 				var jqFiles = $(data).find('.folder-cell a').map(function(index,a){ return $(a).attr('href').split('/')[3] });
 				var files = [];
@@ -77,13 +78,27 @@ app.views.Article = Backbone.Marionette.ItemView.extend({
 
 
 		},
+		'click button[type=delete]': function(e){
+			e.preventDefault();
+
+			$.ajax({
+			    url: 'article/'+this.model.get('_id'),
+			    type: 'DELETE',
+			    success: function(result) {
+			        console.log(result)
+			    }
+			});
+		},
 		'click button[type=submit]': function(e) {
 			e.preventDefault();
+			console.log(this.model.attributes)
+			var date = $( "#article_form input[name=date]" ).val();
+			var ts = moment(date).unix();
 
 			var post = {
 				titre: $( "#article_form input[name=titre]" ).val(),
 				resume: $( "#article_form textarea[name=resume]" ).val(),
-				date: $( "#article_form input[name=date]" ).val(),
+				date: ts,
 				folder: $( "#article_form input[name=folder]" ).val(),
 				tag: $( "#article_form select[name=tag]" ).val(),
 				type: $( "#article_form select[name=type]" ).val(),
@@ -91,8 +106,20 @@ app.views.Article = Backbone.Marionette.ItemView.extend({
 			}
 			console.log(post)
 
-
-			$.post( "new-article", post );
+			if(this.model.attributes.hasOwnProperty('_id')) {
+				
+				$.ajax({
+				    url: 'article/'+this.model.get('_id'),
+				    type: 'PUT',
+				    data: post,
+				    success: function(result) {
+				        console.log(result)
+				    }
+				});
+			}
+			else {
+				$.post( "article", post );
+			}
 		}
 	}
 });

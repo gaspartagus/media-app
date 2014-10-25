@@ -189,14 +189,12 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 		var insertion = client.query(insertionString.slice(0,-1));
 		res.json({status: 'OK'});
 	})
-	app.post('/contenus/new-article', function(req, res) {
+	app.post('/contenus/article', function(req, res) {
 	    // get the temporary location of the file
-	    console.log('POST new-article')
+	    console.log('POST article')
 
 	    console.log(req.body)
 
-		   
-		
 		var update = client.query("INSERT INTO articles (titre,resume,tag,folder,files,date,type) VALUES ('"
 			+ req.body.titre +"','"
 			+ req.body.resume +"','"
@@ -208,14 +206,39 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 			+ "')");
 
 	})
-	.post('/contenus/nouvelle-asso', function(req, res) {
+	.put('/contenus/article/:id', function(req, res) {
 
-	    console.log('POST nouvelle-asso')
+	    console.log('PUT article')
 
-	    // eyes.inspect(Object.keys(req))
-	    // eyes.inspect(req.body)
+	    console.log(req.body,req.params.id)
 
-		   
+		var update = client.query("UPDATE articles SET " +
+			"titre='" + req.body.titre +"'," +
+			"resume='" + req.body.resume +"'," +
+			"tag='" + req.body.tag +"'," +
+			"folder='" + req.body.folder +"'," +
+			"files='" + req.body.files +"'," +
+			"date='" + req.body.date +"'," +
+			"type='" + req.body.type + "'" +
+			"WHERE _id=" + req.params.id
+			);
+		res.json(true);
+
+	})
+	.delete('/contenus/article/:id', function(req, res) {
+
+	    console.log('DELETE article')
+
+	    console.log(req.params.id)
+
+	    var deletion = client.query("DELETE FROM articles WHERE _id='"+ req.params.id +"'");
+
+	    res.json(true);
+	  
+	})
+	.post('/contenus/association', function(req, res) {
+
+	    console.log('POST association')		   
 		
 		var update = client.query("INSERT INTO associations (nom,description,icone) VALUES ('"
 			+ req.body.nom +"','"
@@ -223,6 +246,17 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 			+ req.body.icone
 			+ "')");
 
+	})
+	.delete('/contenus/association/:nom', function(req, res) {
+
+	    console.log('DELETE association')
+
+	    console.log(req.params.nom)
+
+	    var deletion = client.query("DELETE FROM associations WHERE nom='"+ req.params.nom +"'");
+
+	    res.json(true);
+	  
 	});
 
 

@@ -49,6 +49,17 @@ app.views.Association = Backbone.Marionette.ItemView.extend({ // Vue tableau
 		'click textarea': function(e){
 			$(e.currentTarget).redactor({ focus: true });
 		},
+		'click button[type=delete]': function(e){
+			e.preventDefault();
+
+			$.ajax({
+			    url: 'association/'+this.model.get('nom'),
+			    type: 'DELETE',
+			    success: function(result) {
+			        console.log(result)
+			    }
+			});
+		},
 		'click button[type=submit]': function(e) {
 			e.preventDefault();
 
@@ -60,7 +71,7 @@ app.views.Association = Backbone.Marionette.ItemView.extend({ // Vue tableau
 			console.log(post)
 
 
-			$.post( "nouvelle-asso", post );
+			$.post( "association", post );
 		}
 	}
 });
