@@ -12,6 +12,13 @@ $(document).ready(function(){
 		});
 	} else localArticles = JSON.parse(localStorage.articles);
 
+	if(!localStorage.getItem('assos')) {
+		$.get('touteslesassos',function(data){
+			localAssos = data;
+			localStorage.assos = JSON.stringify(data);
+		});
+	} else localAssos = JSON.parse(localStorage.assos);
+
 	if(!localStorage.getItem('favoris')) {
 		favoris = [];
 	} else favoris = JSON.parse(localStorage.favoris);

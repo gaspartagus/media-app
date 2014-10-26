@@ -81,6 +81,14 @@
         </script>
         <script type="text/template" id="associations_template">
 
+            <%
+            for (var i = localAssos.length - 1; i >= 0; i--) {
+                %>
+                <div id="<%= localAssos[i].nom %>" class="simple_list associations_item"><%= localAssos[i].nom %></div>
+                <%
+            };
+            %>
+
             <div id="bde" class="simple_list associations_item">BDE</div>
             <div id="bds" class="simple_list associations_item">BDS</div>
             <div id="bda" class="simple_list associations_item">BDA</div>
@@ -111,6 +119,11 @@
             <div class="action_container2 <%= liked %>">
                 <span class="glyphicon glyphicon-heart"></span>
             </div>
+            <div id="html"><%
+            if(type!='image'){
+                %><%= files %><%
+            }
+            %></div>
             <div id="gallery"></div>
 
         </script>

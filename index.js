@@ -219,7 +219,7 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 			"folder='" + req.body.folder +"'," +
 			"files='" + req.body.files +"'," +
 			"date='" + req.body.date +"'," +
-			"type='" + req.body.type + "'" +
+			"type='" + req.body.type + "' " +
 			"WHERE _id=" + req.params.id
 			);
 		res.json(true);
@@ -245,6 +245,20 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 			+ req.body.description +"','"
 			+ req.body.icone
 			+ "')");
+
+	})
+	.put('/contenus/association/:id', function(req, res) {
+
+	    console.log('PUT association')
+
+	    console.log(req.body,req.params.id)
+
+		var update = client.query("UPDATE articles SET " +
+			"nom='" + req.body.nom +"'," +
+			"description='" + req.body.description +"'," +
+			"icone='" + req.body.icone +"' " +
+			"WHERE nom='" + req.params.nom + "'");
+		res.json(true);
 
 	})
 	.delete('/contenus/association/:nom', function(req, res) {
