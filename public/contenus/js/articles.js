@@ -53,8 +53,8 @@ app.views.Article = Backbone.Marionette.ItemView.extend({
 	template: "#article_template",
 
 	onRender: function(){
-		$( "#article_form textarea[name=resume]" ).html(this.model.get('resume'));
-		$( "#article_form input[name=files]" ).val(this.model.get('files'))
+		this.$el.find( "textarea[name=resume]" ).html(this.model.get('resume'))
+		this.$el.find( "input[name=files]" ).val(this.model.get('files'))
 	},
 
 	events: {
