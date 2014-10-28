@@ -20,7 +20,8 @@ app.views.ArticleItem = Backbone.Marionette.ItemView.extend({
 	className: 'list-group-item',
 
 	initialize: function() {
-		this.model.attributes.image = JSON.parse(this.model.attributes.files)[0];
+		if(this.model.get('files').length > 5)
+			this.model.attributes.image = JSON.parse(this.model.get('files'))[0];
 	},
 
 	events: {
@@ -51,8 +52,9 @@ app.views.Article = Backbone.Marionette.ItemView.extend({
 	className: "main_nav",
 	template: "#article_template",
 
-	onRender: function(arg){
-		$( "#article_form textarea[name=resume]" ).html(this.model.get('resume'))
+	onRender: function(){
+		$( "#article_form textarea[name=resume]" ).html(this.model.get('resume'));
+		$( "#article_form input[name=files]" ).val(this.model.get('files'))
 	},
 
 	events: {

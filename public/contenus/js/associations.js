@@ -45,6 +45,10 @@ app.views.Association = Backbone.Marionette.ItemView.extend({ // Vue tableau
 	className: "main_nav",
 	template: "#association_template",
 
+	onRender: function(){
+		$( "#article_form textarea[name=description]" ).html(this.model.get('resume'));
+	},
+
 	events: {
 		'click textarea': function(e){
 			$(e.currentTarget).redactor({ focus: true });
