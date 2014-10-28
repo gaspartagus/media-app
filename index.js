@@ -201,8 +201,8 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 			+ req.body.resume +"','"
 			+ req.body.tag +"','"
 			+ req.body.folder +"','"
-			+ req.body.files +"','"
-			+ req.body.date +"','"
+			+ req.body.files +"',"
+			+ req.body.date +",'"
 			+ req.body.type
 			+ "')");
 
@@ -248,7 +248,7 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 			+ "')");
 
 	})
-	.put('/contenus/association/:nom', function(req, res) {
+	.put('/contenus/association/:id', function(req, res) {
 
 	    console.log('PUT association')
 
@@ -258,7 +258,8 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 			+ "nom='" + req.body.nom +"',"
 			+ "description='" + req.body.description +"',"
 			+ "icone='" + req.body.icone +"' "
-			+ "WHERE nom='" + req.params.nom + "'");
+			+ "WHERE _id=" + req.params.id
+		);
 		res.json(true);
 
 	})

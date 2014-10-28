@@ -56,7 +56,8 @@ app.views.Article = Backbone.Marionette.ItemView.extend({
 		this.$el.find( "textarea[name=resume]" ).html(this.model.get('resume'))
 		this.$el.find( "input[name=files]" ).val(this.model.get('files'))
 		this.$el.find( "input[name=date]" ).val(moment(this.model.get('date')*1000).format('YYYY-MM-DD'))
-		this.$el.find( "select[name=type] option[value="+this.model.get('type')+"]" ).attr('selected','selected')
+		if(this.model.get('type'))
+			this.$el.find( "select[name=type] option[value="+this.model.get('type')+"]" ).attr('selected','selected')
 	},
 
 	events: {
@@ -113,6 +114,8 @@ app.views.Article = Backbone.Marionette.ItemView.extend({
 				files: $( "#article_form input[name=files]" ).val()
 			}
 			console.log(post)
+
+
 
 			if(this.model.attributes.hasOwnProperty('_id')) {
 

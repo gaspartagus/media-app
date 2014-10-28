@@ -74,8 +74,20 @@ app.views.Association = Backbone.Marionette.ItemView.extend({ // Vue tableau
 			}
 			console.log(post)
 
+			if(this.model.attributes.hasOwnProperty('_id')) {
 
-			$.post( "association", post );
+				$.ajax({
+				    url: 'association/'+this.model.get('_id'),
+				    type: 'PUT',
+				    data: post,
+				    success: function(result) {
+				        console.log(result)
+				    }
+				});
+			}
+			else {
+				$.post( "association", post );
+			}
 		}
 	}
 });
