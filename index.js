@@ -86,7 +86,7 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 	    		console.log(result.rows)
 	    		res.json(result.rows)
     		});
-	})
+	});
 
 
 
@@ -176,102 +176,103 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 
 
 // 	});
-	// .post('/profile',function(req,res){
-	// 	console.log('POST profile');
-	// 	console.log(req.body)
-	// 	var deletion = client.query("DELETE FROM profiles WHERE user_id='"+ req.body.user_id +"'");
+	app.post('/profile',function(req,res){
+		console.log('POST profile');
+		console.log(req.body)
+		var deletion = client.query("DELETE FROM profiles WHERE user_id='"+ req.body.user_id +"'");
 
-	// 	var insertionString = "INSERT INTO profiles (article_id, user_id) VALUES ";
-	// 	for (var i = req.body.favoris.length - 1; i >= 0; i--) {
-	// 		insertionString += "(" + parseInt(req.body.favoris[i]) + "," + req.body.user_id + "),"
-	// 	};
-	// 	console.log(insertionString);
-	// 	var insertion = client.query(insertionString.slice(0,-1));
-	// 	res.json({status: 'OK'});
-	// })
-	// app.post('/contenus/article', function(req, res) {
-	//     // get the temporary location of the file
-	//     console.log('POST article')
+		var insertionString = "INSERT INTO profiles (article_id, user_id) VALUES ";
+		for (var i = req.body.favoris.length - 1; i >= 0; i--) {
+			insertionString += "(" + parseInt(req.body.favoris[i]) + "," + req.body.user_id + "),"
+		};
+		console.log(insertionString);
+		var insertion = client.query(insertionString.slice(0,-1));
+		res.json({status: 'OK'});
+	});
 
-	//     console.log(req.body)
+	app.post('/contenus/article', function(req, res) {
+	    // get the temporary location of the file
+	    console.log('POST article')
 
-	// 	var update = client.query("INSERT INTO articles (titre,resume,tag,folder,files,date,type) VALUES ('"
-	// 		+ req.body.titre +"','"
-	// 		+ req.body.resume +"','"
-	// 		+ req.body.tag +"','"
-	// 		+ req.body.folder +"','"
-	// 		+ req.body.files +"','"
-	// 		+ req.body.date +"','"
-	// 		+ req.body.type
-	// 		+ "')");
+	    console.log(req.body)
 
-	// })
-	// .put('/contenus/article/:id', function(req, res) {
+		var update = client.query("INSERT INTO articles (titre,resume,tag,folder,files,date,type) VALUES ('"
+			+ req.body.titre +"','"
+			+ req.body.resume +"','"
+			+ req.body.tag +"','"
+			+ req.body.folder +"','"
+			+ req.body.files +"','"
+			+ req.body.date +"','"
+			+ req.body.type
+			+ "')");
 
-	//     console.log('PUT article')
+	})
+	.put('/contenus/article/:id', function(req, res) {
 
-	//     console.log(req.body,req.params.id)
+	    console.log('PUT article')
 
-	// 	var update = client.query("UPDATE articles SET " +
-	// 		"titre='" + req.body.titre +"'," +
-	// 		"resume='" + req.body.resume +"'," +
-	// 		"tag='" + req.body.tag +"'," +
-	// 		"folder='" + req.body.folder +"'," +
-	// 		"files='" + req.body.files +"'," +
-	// 		"date='" + req.body.date +"'," +
-	// 		"type='" + req.body.type + "' " +
-	// 		"WHERE _id=" + req.params.id
-	// 		);
-	// 	res.json(true);
+	    console.log(req.body,req.params.id)
 
-	// })
-	// .delete('/contenus/article/:id', function(req, res) {
+		var update = client.query("UPDATE articles SET "
+			+ "titre='" + req.body.titre +"',"
+			+ "resume='" + req.body.resume +"',"
+			+ "tag='" + req.body.tag +"',"
+			+ "folder='" + req.body.folder +"',"
+			+ "files='" + req.body.files +"',"
+			+ "date='" + req.body.date +"',"
+			+ "type='" + req.body.type + "' "
+			+ "WHERE _id=" + req.params.id
+			);
+		res.json(true);
 
-	//     console.log('DELETE article')
+	})
+	.delete('/contenus/article/:id', function(req, res) {
 
-	//     console.log(req.params.id)
+	    console.log('DELETE article')
 
-	//     var deletion = client.query("DELETE FROM articles WHERE _id='"+ req.params.id +"'");
+	    console.log(req.params.id)
 
-	//     res.json(true);
+	    var deletion = client.query("DELETE FROM articles WHERE _id="+ req.params.id +"");
+
+	    res.json(true);
 	  
-	// })
-	// .post('/contenus/association', function(req, res) {
+	})
+	.post('/contenus/association', function(req, res) {
 
-	//     console.log('POST association')		   
+	    console.log('POST association')		   
 		
-	// 	var update = client.query("INSERT INTO associations (nom,description,icone) VALUES ('"
-	// 		+ req.body.nom +"','"
-	// 		+ req.body.description +"','"
-	// 		+ req.body.icone
-	// 		+ "')");
+		var update = client.query("INSERT INTO associations (nom,description,icone) VALUES ('"
+			+ req.body.nom +"','"
+			+ req.body.description +"','"
+			+ req.body.icone
+			+ "')");
 
-	// })
-	// .put('/contenus/association/:id', function(req, res) {
+	})
+	.put('/contenus/association/:nom', function(req, res) {
 
-	//     console.log('PUT association')
+	    console.log('PUT association')
 
-	//     console.log(req.body,req.params.id)
+	    console.log(req.body,req.params.id)
 
-	// 	var update = client.query("UPDATE articles SET " +
-	// 		"nom='" + req.body.nom +"'," +
-	// 		"description='" + req.body.description +"'," +
-	// 		"icone='" + req.body.icone +"' " +
-	// 		"WHERE nom='" + req.params.nom + "'");
-	// 	res.json(true);
+		var update = client.query("UPDATE articles SET "
+			+ "nom='" + req.body.nom +"',"
+			+ "description='" + req.body.description +"',"
+			+ "icone='" + req.body.icone +"' "
+			+ "WHERE nom='" + req.params.nom + "'");
+		res.json(true);
 
-	// })
-	// .delete('/contenus/association/:nom', function(req, res) {
+	})
+	.delete('/contenus/association/:nom', function(req, res) {
 
-	//     console.log('DELETE association')
+	    console.log('DELETE association')
 
-	//     console.log(req.params.nom)
+	    console.log(req.params.nom)
 
-	//     var deletion = client.query("DELETE FROM associations WHERE nom='"+ req.params.nom +"'");
+	    var deletion = client.query("DELETE FROM associations WHERE nom='"+ req.params.nom +"'");
 
-	//     res.json(true);
+	    res.json(true);
 	  
-	// });
+	});
 
 
 
