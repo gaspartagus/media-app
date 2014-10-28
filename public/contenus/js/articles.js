@@ -51,6 +51,10 @@ app.views.Article = Backbone.Marionette.ItemView.extend({
 	className: "main_nav",
 	template: "#article_template",
 
+	onRender: function(arg){
+		$( "#article_form textarea[name=resume]" ).html(this.model.get('resume'))
+	},
+
 	events: {
 		'click textarea': function(e){
 			$(e.currentTarget).redactor({ focus: true });
@@ -92,7 +96,7 @@ app.views.Article = Backbone.Marionette.ItemView.extend({
 		'click button[type=submit]': function(e) {
 			e.preventDefault();
 			console.log(this.model.attributes)
-			var date = $( "#article_form input[name=date]" ).val();
+			var date = $( "#article_form input[name=date]" ).val() || 0;
 			var ts = moment(date).unix();
 
 			var post = {
@@ -107,7 +111,7 @@ app.views.Article = Backbone.Marionette.ItemView.extend({
 			console.log(post)
 
 			if(this.model.attributes.hasOwnProperty('_id')) {
-				
+
 				$.ajax({
 				    url: 'article/'+this.model.get('_id'),
 				    type: 'PUT',
