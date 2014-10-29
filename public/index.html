@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        
+
         <meta name="HandheldFriendly" content="true" />
         <meta name="format-detection" content="telephone=no"/>
         <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
@@ -12,39 +12,64 @@
         <link href="css/bootstrap.css" rel="stylesheet" />
         <!-- <link href="css/flat-ui.css" rel="stylesheet" /> -->
 
-        
+
     </head>
-    
+
     <body>
 
         <div id="header" class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
-                <div id="backwards"></div>
+                <div id="backwards"><span class="glyphicon glyphicon-chevron-left"></span></div>
                 <div class="position">Le Point G</div>
             </div>
         </div>
-       <!--  <div class="menu_right">
+        <div class="menu_right">
             <p class="nom">Jean Moul</p>
             <p>Administrateur</p>
             <p>Partager l'application</p>
             <p>Mentions Légales</p>
             <p>Activer les notifications</p>
-            
+
             <div class="plus">+</div>
             <div class="drag"></div>
             <div class="menu_drag"></div>
-        </div> -->
+        </div>
 
         <div class="main"></div>
 
         <nav id="footer" class="navbar navbar-default navbar-fixed-bottom" role="navigation">
             <div class="container">
                 <ol class="nav navbar-nav">
-                    <li id="alaune" class="active"><a>A la Une</a></li>
-                    <li id="photos" class=""><a>Photos</a></li>
-                    <li id="bestof" class=""><a>Best Of</a></li>
-                    <li id="favoris" class=""><a>Favoris</a></li>
-                    <li id="autres" class=""><a>Autres</a></li>
+                    <li id="alaune" class="active">
+                        <a>
+                            <span class="glyphicon glyphicon-globe"></span><br>
+                            A la Une
+                        </a>
+                    </li>
+                    <li id="photos" class="">
+                        <a>
+                            <span class="glyphicon glyphicon-picture"></span> <span class="glyphicon glyphicon-film"></span><br>
+                            Photos/Videos
+                        </a>
+                     </li>
+                    <li id="bestof" class="">
+                        <a>
+                            <span class="glyphicon glyphicon-star"></span><br>
+                            Best Of
+                        </a>
+                    </li>
+                    <li id="favoris" class="">
+                        <a>
+                            <span class="glyphicon glyphicon-heart"></span><br>
+                            Favoris
+                        </a>
+                    </li>
+                    <li id="autres" class="">
+                        <a>
+                            <span class="glyphicon glyphicon-th-large"></span><br>
+                            Autres
+                        </a>
+                    </li>
                 </ol>
             </div>
         </nav>
@@ -62,14 +87,14 @@
 
         <!-- === Template === -->
         <script type="text/template" id="articles_template">
-            
+
             <div id="articles">
             </div>
 
         </script>
         <script type="text/template" id="article_item_template">
-            
-            <div class="article_icon" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= image %>')">                
+
+            <div class="article_icon" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= image %>')">
             </div>
             <div class="description_container">
                 <span class="titre"><%= titre %></span>
@@ -147,16 +172,16 @@
             <div class="tiroir" style="left: <% 100 - focusEl*20 %>">
                 <%
                 album.forEach(function(url){
-                    %><div data-url="<%= url %>" class="preview" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= url %>')"></div><%    
+                    %><div data-url="<%= url %>" class="preview" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= url %>')"></div><%
                 })
 
                 %>
             </div>
-            
+
 
         </script>
         <!-- === Application === -->
-        
+
         <script src="js/app.js"></script>
         <script src="js/accueil.js"></script>
         <script src="js/gallerie.js"></script>
