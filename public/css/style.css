@@ -117,17 +117,24 @@ div{
     z-index: 5;
     font-size: 17pt;
 }
+#home{
+    position: absolute;
+    top: 10px;
+    right: 60px;
+    box-sizing: border-box;
+    z-index: 5;
+    font-size: 17pt;
+}
 .plus {
     position: absolute;
     top: 0;
     left: -50px;
-    padding: 0.15em 0.2em;
-    font-size: 23pt;
-    background-color: rgb(87, 87, 87);
-    color: rgb(255, 255, 255);
+    padding: 8px 13px;
+    font-size: 19pt;
+    /* background-color: rgb(87, 87, 87); */
+    /* color: rgb(255, 255, 255); */
     height: 50px;
     width: 50px;
-    box-sizing: border-box;
 }
 .drag{
     position: absolute;

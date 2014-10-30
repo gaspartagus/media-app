@@ -29,7 +29,7 @@ $(function () {
  */
 function swipeStatus(event, phase, direction, distance, duration, fingerCount, fingerData) {
     //If we are moving before swipe, and we are going L or R in X mode, or U or D in Y mode then drag.
-    
+
     if(phase == 'start')
     {
         startPos = parseInt(menuRight.css('translate'));
@@ -47,25 +47,30 @@ function swipeStatus(event, phase, direction, distance, duration, fingerCount, f
         {
             if( X + startPos < (-1) * menuWidth)
             {
-                menuRight.css("transform", "translate(-" + menuWidth + "px,0)");
+                menuRight
+                    .css("transform", "translate(-" + menuWidth + "px,0)");
             } else {
                 menuRight.css("transform", "translate(" + (startPos + X) + "px,0)");
+                console.log((10*(startPos + X)/menuWidth))
+                menuRight.css("box-shadow", "0 0 " + (-10*(startPos + X)/menuWidth) + "px black");
             }
-        } else {  
+        } else {
             if( X > menuWidth)
             {
                 menuRight.css("transform", "translate(0,0)");
             } else //track finger
             {
                 menuRight.css("transform", "translate(" + (startPos + X) + "px,0)");
+                console.log((10*(startPos + X)/menuWidth))
+                menuRight.css("box-shadow", "0 0 " + (-10*(startPos + X)/menuWidth) + "px black");
             }
         }
     } else if (phase == "end") {
         console.log('end', fingerData)
         if(X < 0) {
-            menuRight.transition({x: -menuWidth});
+            menuRight.transition({x: -menuWidth,"box-shadow": "0 0 10px black"});
         } else {
-            menuRight.transition({x: 0});
+            menuRight.transition({x: 0, "box-shadow": "0 0 0 black"});
         }
     }
     // if (phase == "move" && (direction == "left" || direction == "right")) {
