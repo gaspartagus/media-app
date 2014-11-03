@@ -27,7 +27,20 @@ app.views.MenuTop = Backbone.Marionette.ItemView.extend({
 		'click #backwards': function(elem) {
 			console.log('back');
 			Backbone.history.history.back()
-		}
+		},
+		'click #home': function(evt) {
+			app.controller.accueil();
+		},
+		'click #refresh': function(evt) {
+			$.get('touslesarticles',function(data){
+				localArticles = data;
+				localStorage.articles = JSON.stringify(data);
+			});
+			$.get('touteslesassos',function(data){
+				localAssos = data;
+				localStorage.assos = JSON.stringify(data);
+			});
+		},
 	},
 
 	hide: function() {
@@ -106,7 +119,7 @@ app.views.MenuRight = Backbone.Marionette.ItemView.extend({
 	events: {
 		'click .plus': function(elem) {
 			this.toggle();
-		}
+		},
 	},
 
 	toggle: function() {
