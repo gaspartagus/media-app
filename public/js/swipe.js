@@ -67,10 +67,10 @@ function swipeStatus(event, phase, direction, distance, duration, fingerCount, f
         }
     } else if (phase == "end") {
         console.log('end', fingerData)
-        if(X < 0) {
-            menuRight.transition({x: -menuWidth,"box-shadow": "0 0 10px black"});
-        } else {
+        if(X > 10) {
             menuRight.transition({x: 0, "box-shadow": "0 0 0 black"});
+        } else {
+            menuRight.transition({x: -menuWidth,"box-shadow": "0 0 10px black"});
         }
     }
     // if (phase == "move" && (direction == "left" || direction == "right")) {
