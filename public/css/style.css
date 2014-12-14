@@ -226,9 +226,9 @@ div{
 .main_nav{
     position: relative;
     top: 50px;
-    padding: 0.2em 0.3em;
+    padding: 0;
     overflow-x: auto;
-    min-height: 80%;
+    height: calc(100% - 110px);
 }
 .article_item{
     height: 50px;
@@ -240,6 +240,10 @@ div{
     width: 100%;
     list-style: none;
     position: relative;
+    border-bottom: 1px solid lightgrey;
+}
+.article_item:last-child{
+    border:none;
 }
 .article_icon{
     position: absolute;
@@ -281,16 +285,16 @@ div{
     left: 0;
     font-size: 13pt;
     height: 100%;
-    width: 61%;
+    width: calc(100% - 125px);
     overflow: hidden;
 }
 .description_container .titre{
     color: rgb(151, 151, 151);
     position: absolute;
-    width: 50em;
     text-align: left;
     top: 0;
     left: 0;
+    white-space: nowrap;
 }
 .description_container .accroche{
     font-size: 10pt;
@@ -378,7 +382,7 @@ div{
 }
 .tiroir{
     width: 1000%;
-
+    transition: 0.2s;
     height: 10%;
     position: absolute;
     top: 69%;
