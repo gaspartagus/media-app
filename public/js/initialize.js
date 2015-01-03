@@ -5,25 +5,25 @@ $(document).ready(function(){
 	//app.router = new app.Router();
 	app.start();
 
-	if(!localStorage.getItem('articles')) {
-		$.get('touslesarticles',function(data){
+	if(!localStorage.getItem("articles")) {
+		$.get(root + "touslesarticles",function(data){
 			localArticles = data;
 			localStorage.articles = JSON.stringify(data);
 		});
 	} else localArticles = JSON.parse(localStorage.articles);
 
-	if(!localStorage.getItem('assos')) {
-		$.get('touteslesassos',function(data){
+	if(!localStorage.getItem("assos")) {
+		$.get(root + "touteslesassos",function(data){
 			localAssos = data;
 			localStorage.assos = JSON.stringify(data);
 		});
 	} else localAssos = JSON.parse(localStorage.assos);
 
-	if(!localStorage.getItem('favoris')) {
+	if(!localStorage.getItem("favoris")) {
 		favoris = [];
 	} else favoris = JSON.parse(localStorage.favoris);
 
-	if(!localStorage.getItem('user_id')) {
+	if(!localStorage.getItem("user_id")) {
 		user_id = Math.floor(Math.random()*1000000000);
 		localStorage.user_id = user_id;
 

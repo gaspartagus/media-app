@@ -43,19 +43,19 @@ function swipeStatus(event, phase, direction, distance, duration, fingerCount, f
     {
         //console.log(fingerData,X,menuWidth,direction,startPos);
 
-        if(X < 0)
+        if(X > 0)
         {
-            if( X + startPos < (-1) * menuWidth)
+            if( X + startPos > menuWidth)
             {
                 menuRight
-                    .css("transform", "translate(-" + menuWidth + "px,0)");
+                    .css("transform", "translate(" + menuWidth + "px,0)");
             } else {
                 menuRight.css("transform", "translate(" + (startPos + X) + "px,0)");
                 console.log((10*(startPos + X)/menuWidth))
                 menuRight.css("box-shadow", "0 0 " + (-10*(startPos + X)/menuWidth) + "px black");
             }
         } else {
-            if( X > menuWidth)
+            if( X < -1 * menuWidth)
             {
                 menuRight.css("transform", "translate(0,0)");
             } else //track finger
@@ -67,10 +67,10 @@ function swipeStatus(event, phase, direction, distance, duration, fingerCount, f
         }
     } else if (phase == "end") {
         console.log('end', fingerData)
-        if(X > 10) {
+        if(X < -10) {
             menuRight.transition({x: 0, "box-shadow": "0 0 0 black"});
         } else {
-            menuRight.transition({x: -menuWidth,"box-shadow": "0 0 10px black"});
+            menuRight.transition({x: menuWidth,"box-shadow": "0 0 10px black"});
         }
     }
     // if (phase == "move" && (direction == "left" || direction == "right")) {

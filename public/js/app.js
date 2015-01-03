@@ -1,3 +1,6 @@
+
+var root = "https://nameless-ravine-5052.herokuapp.com/";
+
 var app = new Backbone.Marionette.Application();
 
 app.models = {};
