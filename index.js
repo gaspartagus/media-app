@@ -11,7 +11,7 @@ var express = require('express')
 	// , google = require('googleapis'
 	// , OAuth2 = google.auth.OAuth2;
 ;
-var DATABASE_URL = 'postgres://rxczkdjyebmxfl:b8uvjvix4Z2yflVth3n1a4tOjv@ec2-54-246-81-118.eu-west-1.compute.amazonaws.com:5432/devrau91ujvtbo'
+var DATABASE_URL = 'postgres://itnrhvtzozcmgq:eDJpEXjGz1kE8IVnqhZG6doX-i@ec2-107-20-197-146.compute-1.amazonaws.com:5432/d5qovjgfdllb6p'
 	+ '?ssl=true';
 
 var currentArticle,
@@ -33,7 +33,7 @@ var allowCrossDomain = function(req, res, next) {
 
 app.use( allowCrossDomain );
 
-pg.connect(process.env.DATABASE_URL, function(err, client) {
+pg.connect(DATABASE_URL, function(err, client) {
 
 
 	app.set('port', (process.env.PORT || 5000))
@@ -254,7 +254,7 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 
 	    console.log(req.body,req.params.id)
 
-		var update = client.query("UPDATE articles SET "
+		var update = client.query("UPDATE associations SET "
 			+ "nom='" + req.body.nom +"',"
 			+ "description='" + req.body.description +"',"
 			+ "icone='" + req.body.icone +"' "

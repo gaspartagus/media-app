@@ -46,7 +46,7 @@ app.views.Association = Backbone.Marionette.ItemView.extend({ // Vue tableau
 	template: "#association_template",
 
 	onRender: function(){
-		this.$el.find( "textarea[name=resume]" ).html(this.model.get('resume'))
+		this.$el.find( "textarea[name=description]" ).html(this.model.get('description'))
 	},
 
 	events: {
