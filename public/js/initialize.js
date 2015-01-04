@@ -1,23 +1,43 @@
 var localArticles,
 	favoris,
 	user_id;
+
+function fetchTheNews(){
+	$.get(root + "touslesarticles",function(data){
+		localArticles = data;
+		localStorage.articles = JSON.stringify(data);
+	});
+
+	$.get(root + "touteslesassos",function(data){
+		localAssos = data;
+		localStorage.assos = JSON.stringify(data);
+	});
+}
+
 $(document).ready(function(){
 	//app.router = new app.Router();
 	app.start();
+	if(navigator.onLine){
+		fetchTheNews();
+	} else {
+		localArticles = JSON.parse(localStorage.articles);
+		localAssos = JSON.parse(localStorage.assos);
+	}
 
-	if(!localStorage.getItem("articles")) {
-		$.get(root + "touslesarticles",function(data){
-			localArticles = data;
-			localStorage.articles = JSON.stringify(data);
-		});
-	} else localArticles = JSON.parse(localStorage.articles);
 
-	if(!localStorage.getItem("assos")) {
-		$.get(root + "touteslesassos",function(data){
-			localAssos = data;
-			localStorage.assos = JSON.stringify(data);
-		});
-	} else localAssos = JSON.parse(localStorage.assos);
+	// if(!localStorage.getItem("articles")) {
+	// 	$.get(root + "touslesarticles",function(data){
+	// 		localArticles = data;
+	// 		localStorage.articles = JSON.stringify(data);
+	// 	});
+	// } else localArticles = JSON.parse(localStorage.articles);
+
+	// if(!localStorage.getItem("assos")) {
+	// 	$.get(root + "touteslesassos",function(data){
+	// 		localAssos = data;
+	// 		localStorage.assos = JSON.stringify(data);
+	// 	});
+	// } else localAssos = JSON.parse(localStorage.assos);
 
 	if(!localStorage.getItem("favoris")) {
 		favoris = [];

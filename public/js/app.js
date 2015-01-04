@@ -11,6 +11,7 @@ app.addRegions({
 	mainRegion: ".main",
 	navTop: '.header',
 	navBottom: '#footer',
+	// titre: "#position"
 
 });
 
@@ -21,6 +22,11 @@ app.vent.on("routing:started", function(){
 	Backbone.history.stop();
   	if( ! Backbone.History.started) Backbone.history.start();
 });
+
+var titleRegion = $("#position");
+function showTitle(title) {
+	titleRegion.html(title);
+}
 
 // app.models.menu = Backbone.Model.extend({});
 

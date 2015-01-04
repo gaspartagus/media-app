@@ -76,12 +76,13 @@ var myController = Backbone.Router.extend({
 			collection: collection
 		});
 		app.mainRegion.show(articlesView);
-
+		showTitle(tag);
 		Backbone.history.navigate("associations/"+ tag + "/" + type);
 	},
 	association: function(nom){
 		var assoc = new app.models.Association({ nom: nom });
 		app.mainRegion.show(new app.views.Association({ model: assoc }));
+		showTitle(nom)
 		Backbone.history.navigate("associations/"+nom);
 	},
 	article: function(id){
@@ -92,7 +93,7 @@ var myController = Backbone.Router.extend({
 		var gallerie = new app.collections.Images(col);
 		var articleModel = new app.models.ArticleItem(article);
 		app.mainRegion.show(new app.views.Article({ collection: gallerie, model: articleModel }));
-
+		showTitle(article.titre);
 		Backbone.history.navigate("article/"+ id);
 	},
 	gallerie: function(id,focus){

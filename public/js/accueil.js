@@ -32,14 +32,7 @@ app.views.MenuTop = Backbone.Marionette.ItemView.extend({
 			app.controller.accueil();
 		},
 		'click #refresh': function(evt) {
-			$.get('touslesarticles',function(data){
-				localArticles = data;
-				localStorage.articles = JSON.stringify(data);
-			});
-			$.get('touteslesassos',function(data){
-				localAssos = data;
-				localStorage.assos = JSON.stringify(data);
-			});
+			fetchTheNews();
 		},
 	},
 

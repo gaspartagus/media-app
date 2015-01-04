@@ -133,6 +133,14 @@ div{
     z-index: 5;
     font-size: 17pt;
 }
+@-webkit-keyframes refresh {
+  0%   {  }
+  100% { transform: rotate(180deg); }
+}
+#refresh .glyphicon:hover{
+    -webkit-animation: refresh 0.7s;
+    /*-webkit-animation-timing-function: linear;*/
+}
 .plus {
     position: absolute;
     top: 0;
@@ -160,7 +168,7 @@ div{
     top: 0;
     left: 0;
 }
-.position{
+#position{
     position: absolute;
     padding: 0.6em 10%;
     font-size: 15pt;
