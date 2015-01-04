@@ -33,7 +33,7 @@ var allowCrossDomain = function(req, res, next) {
 
 app.use( allowCrossDomain );
 
-pg.connect(DATABASE_URL, function(err, client) {
+pg.connect(process.env.DATABASE_URL, function(err, client) {
 
 
 	app.set('port', (process.env.PORT || 5000))
