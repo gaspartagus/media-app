@@ -16,7 +16,7 @@ var swipeOptions = {
 
 $(function () {
     $(".drag").swipe(swipeOptions);
-    $('.menu_drag').swipe(swipeOptions);
+    $('.menu_right').swipe(swipeOptions);
     $('.plus').swipe(swipeOptions);
 });
 
@@ -33,7 +33,7 @@ function swipeStatus(event, phase, direction, distance, duration, fingerCount, f
     if(phase == 'start')
     {
         startPos = parseInt(menuRight.css('translate'));
-        console.log('startPos', startPos,event)
+        // console.log('startPos', startPos,event)
     }
 
     var finger = fingerData[0];
@@ -51,7 +51,7 @@ function swipeStatus(event, phase, direction, distance, duration, fingerCount, f
                     .css("transform", "translate(" + menuWidth + "px,0)");
             } else {
                 menuRight.css("transform", "translate(" + (startPos + X) + "px,0)");
-                console.log((10*(startPos + X)/menuWidth))
+                // console.log((10*(startPos + X)/menuWidth))
                 menuRight.css("box-shadow", "0 0 " + (-10*(startPos + X)/menuWidth) + "px black");
             }
         } else {
@@ -61,12 +61,12 @@ function swipeStatus(event, phase, direction, distance, duration, fingerCount, f
             } else //track finger
             {
                 menuRight.css("transform", "translate(" + (startPos + X) + "px,0)");
-                console.log((10*(startPos + X)/menuWidth))
+                // console.log((10*(startPos + X)/menuWidth))
                 menuRight.css("box-shadow", "0 0 " + (-10*(startPos + X)/menuWidth) + "px black");
             }
         }
     } else if (phase == "end") {
-        console.log('end', fingerData)
+        // console.log('end', fingerData)
         if(X < -10) {
             menuRight.transition({x: 0, "box-shadow": "0 0 0 black"});
         } else {

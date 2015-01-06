@@ -161,6 +161,7 @@ div{
     left: 100%;
 }
 .menu_drag{
+    display: none;
     position: absolute;
     height: 100%;
     width: 100%;
@@ -172,6 +173,10 @@ div{
     position: absolute;
     padding: 0.6em 10%;
     font-size: 15pt;
+    max-width: calc(100% - 86px);
+    text-align: left;
+    overflow: hidden;
+    height: 2em;
 }
 .main{
     width: 100%;

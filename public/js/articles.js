@@ -33,7 +33,11 @@ app.views.ArticleItem = Backbone.Marionette.ItemView.extend({
 	className: 'article_item',
 
 	initialize: function() {
-		this.model.attributes.image = JSON.parse(this.model.attributes.files)[0];
+		try{
+			this.model.attributes.image = JSON.parse(this.model.attributes.files)[0];
+		} catch(err) {
+			console.log(err);
+		}
 		if(favoris.indexOf(this.model.get('_id'))>-1)
 			this.model.attributes.liked = 'liked';
 		else
