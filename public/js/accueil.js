@@ -113,6 +113,14 @@ app.views.MenuRight = Backbone.Marionette.ItemView.extend({
 		'click .plus': function(elem) {
 			this.toggle();
 		},
+		'click #sons': function(elem) {
+			console.log("Les sons")
+			app.controller.articles("sons")
+		},
+		'click #news': function(elem) {
+			console.log("Les News")
+			app.controller.articles("news")
+		},
 	},
 
 	toggle: function() {
