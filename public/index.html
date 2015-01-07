@@ -119,12 +119,6 @@
             };
             %>
 
-            <div id="bde" class="simple_list associations_item">BDE</div>
-            <div id="bds" class="simple_list associations_item">BDS</div>
-            <div id="bda" class="simple_list associations_item">BDA</div>
-            <div id="media" class="simple_list associations_item">Media</div>
-            <div id="gducoeur" class="simple_list associations_item">G du coeur</div>
-
         </script>
         <script type="text/template" id="accueil_template">
 
@@ -150,8 +144,8 @@
                 <span class="glyphicon glyphicon-heart"></span>
             </div>
             <div id="html"><%
-            if(type!='image'){
-                %><%= files %><%
+            if(type!='image' || true){
+                %><%= resume %><%
             }
             %></div>
             <div id="gallery"></div>
@@ -165,7 +159,7 @@
         <script type="text/template" id="association_template">
 
             <h1><%= nom %></h1>
-            <p><%= description %></p>
+            <div><%= description %></div>
             <div class="photos_videos_nav">
                 <div id="image" class="photos_nav">Photos</div>
                 <div id="video" class="photos_nav">Videos</div>

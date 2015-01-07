@@ -17,3 +17,10 @@ app.vent.on("routing:started", function(){
   	if( ! Backbone.History.started) Backbone.history.start();
 });
 
+function htmlEncode(s)
+{
+  var el = document.createElement("div");
+  el.innerText = el.textContent = s;
+  s = el.innerHTML;
+  return s;
+}

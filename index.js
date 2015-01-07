@@ -239,7 +239,9 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 	})
 	.post('/contenus/association', function(req, res) {
 
-	    console.log('POST association')		   
+	    console.log('POST association')
+
+	    console.log(req.body,req.params.id)	   
 		
 		var update = client.query("INSERT INTO associations (nom,description,icone) VALUES ('"
 			+ req.body.nom +"','"

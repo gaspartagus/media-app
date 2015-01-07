@@ -1,7 +1,7 @@
 app.models.Association = Backbone.Model.extend({
     defaults: {
-    	nom: "bde",
-    	description: "Une association de gens heureux",
+    	nom: "",
+    	description: "",
     	icone: ""
     }
 });
@@ -18,5 +18,9 @@ app.views.Association = Backbone.Marionette.ItemView.extend({
 				type = elem.currentTarget.id;
 			app.controller.articles(tag,type);
 		}
-	}
+	},
+
+	onRender: function(){
+		console.log(this)
+	},
 });
