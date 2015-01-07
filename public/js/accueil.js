@@ -26,6 +26,9 @@ app.views.MenuTop = Backbone.Marionette.ItemView.extend({
 	events: {
 		'click #backwards': function(elem) {
 			console.log('back');
+			if($(".main .gallerie").length)
+				$("#footer").css("transform","translateY(0)");
+			
 			Backbone.history.history.back()
 		},
 		'click #home': function(evt) {

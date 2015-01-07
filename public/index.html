@@ -173,14 +173,19 @@
 
         </script>
         <script type="text/template" id="gallerie_template">
-            <div class="image" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= album[focusEl] %>')"></div>
-            <div class="tiroir" style="left: <% 100 - focusEl*20 %>">
-                <%
-                album.forEach(function(url){
-                    %><div data-url="<%= url %>" class="preview" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= url %>')"></div><%
-                })
+            <div class="image" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= album[focusEl] %>')">
+                <span class="left-nav glyphicon glyphicon-chevron-left"></span>
+                <span class="right-nav glyphicon glyphicon-chevron-right"></span>
+            </div>
+            <div class="tiroir-container">
+                <div class="tiroir" style="left: <% 100 - focusEl*20 %>">
+                    <%
+                    album.forEach(function(url){
+                        %><div data-url="<%= url %>" class="preview" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= url %>')"></div><%
+                    })
 
-                %>
+                    %>
+                </div>
             </div>
 
 

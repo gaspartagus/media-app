@@ -50,6 +50,7 @@ div{
     z-index: 1;
 }
 #footer {
+    transition: 0.5s;
     width: 100%;
     height: 68px;
     z-index: 1;
@@ -375,7 +376,22 @@ div{
     position: fixed;
     /* top: 0; */
     left: 0;
+    background-color: rgb(14, 14, 14);
     z-index: 15;
+}
+.gallerie .glyphicon{
+    font-size: 20pt;
+    top: calc(50% - 83px);
+    display: inline-block;
+    position: absolute;
+    color: white;
+    text-shadow: 0 0 9px black;
+}
+.left-nav{
+    left: 25px;
+}
+.right-nav{
+    right: 25px;
 }
 .gallery-icon-container{
     display: inline-block;
@@ -393,22 +409,27 @@ div{
 .image{
     width: 100%;
 
-    height: 69%;
+    height: calc(100% - 150px);
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     background-color: rgb(14, 14, 14);
 }
+.tiroir-container{
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+}
 .tiroir{
     width: 1000%;
     transition: 0.2s;
-    height: 10%;
-    position: absolute;
-    top: 69%;
+    height: 100%;
+    position: relative;
 }
 .preview{
-    height: 7em;
-
+    height: 150px;
     width: 9em;
     display: table-cell;
     /* text-align: left; */

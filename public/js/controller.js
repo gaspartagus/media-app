@@ -104,6 +104,7 @@ var myController = Backbone.Router.extend({
 		var album = new app.models.Album({folder: folder, album: files, focusEl: focus})
 		console.log(album)
 		app.mainRegion.show(new app.views.Gallerie({ model: album }));
+		$("#footer").css("transform","translateY(150px)");
 
 		Backbone.history.navigate("article/"+ id + "/" + focus);
 	},

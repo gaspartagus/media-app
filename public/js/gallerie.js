@@ -16,19 +16,27 @@ app.views.Gallerie = Backbone.Marionette.ItemView.extend({ // options : { firstE
 	// },
 
 	events: {
-		'click .image': function(elem) {
-			// console.log(this, elem);
-			var images = this.model.get("album"),
-				focus = this.model.get("focusEl")
-			if(elem.clientX > 300 && focus < images.length-1) {
-				console.log("avant")
-				this.model.attributes.focusEl += 1;
-				this.switch(); 
-			} else if(elem.clientX < 300 && focus > 0) {
-				console.log("arriere")
-				this.model.attributes.focusEl -= 1;
-				this.switch(); 
-			} else return false;
+		// 'click .image': function(elem) {
+		// 	// console.log(this, elem);
+		// 	var images = this.model.get("album"),
+		// 		focus = this.model.get("focusEl")
+		// 	if(elem.clientX > 300 && focus < images.length-1) {
+		// 		console.log("avant")
+		// 		this.model.attributes.focusEl += 1;
+		// 		this.switch(); 
+		// 	} else if(elem.clientX < 300 && focus > 0) {
+		// 		console.log("arriere")
+		// 		this.model.attributes.focusEl -= 1;
+		// 		this.switch(); 
+		// 	} else return false;
+		// },
+		'click .left-nav': function(elem) {
+			this.model.attributes.focusEl -= 1;
+	 		this.switch(); 
+		},
+		'click .right-nav': function(elem) {
+			this.model.attributes.focusEl += 1;
+	 		this.switch(); 
 		},
 		'click .preview': function(elem) {
 			console.log(this, elem);
@@ -43,6 +51,8 @@ app.views.Gallerie = Backbone.Marionette.ItemView.extend({ // options : { firstE
 	},
 
 	switch: function() {
+		this.model.attributes.focusEl = Math.max(0,this.model.attributes.focusEl);
+		this.model.attributes.focusEl = Math.min(this.model.attributes.album.length-1,this.model.attributes.focusEl);
 		var focusEl = this.model.get('focusEl');
 		var album = this.model.attributes.album;
 		$('.image')
