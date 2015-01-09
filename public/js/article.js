@@ -42,7 +42,7 @@ app.views.Article = Backbone.Marionette.CompositeView.extend({
 		},
 		'click .action_container2': function(elem) {
 			$(elem.currentTarget).toggleClass('liked');
-			var id = this.collection.models[0].get('_id');
+			var id = this.model.get('_id');
 			if(favoris.indexOf(id) > -1)
 				favoris = _.without(favoris,id);
 			else

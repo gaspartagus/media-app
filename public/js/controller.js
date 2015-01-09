@@ -130,7 +130,7 @@ var myController = Backbone.Router.extend({
 	},
 	bestof: function() {
 
-		$.get('bestof',function(best){
+		$.get(root + 'bestof',function(best){
 			console.log(best);
 			localArticles.forEach(function(article){
 				var sel = _.find(best,{article_id: article._id});
