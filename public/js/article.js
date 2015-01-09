@@ -29,9 +29,9 @@ app.views.Article = Backbone.Marionette.CompositeView.extend({
 		else
 			this.model.attributes.liked = '';
 	},
-	// render: function(){
-	// 	// if(this.model.get('type')!=)
-	// }
+	onRender: function(){
+		// debugger;
+	},
 
 	events: {
 		'click .gallery-icon': function(elem) {

@@ -6,7 +6,8 @@ app.models.Article = Backbone.Model.extend({
         titre: '',
         resume: '',
         folder: '',
-        files: ''
+        files: '',
+        iframe: "",
     }
 });
 
@@ -20,8 +21,13 @@ app.views.ArticleItem = Backbone.Marionette.ItemView.extend({
 	className: 'list-group-item',
 
 	initialize: function() {
-		if(this.model.get('files').length > 5)
-			this.model.attributes.image = JSON.parse(this.model.get('files'))[0];
+		if(this.model.get('files').length > 5) {
+			try{
+				this.model.attributes.image = JSON.parse(this.model.get('files'))[0];				
+			} catch(err) {
+
+			}
+		}
 	},
 
 	events: {
@@ -105,14 +111,15 @@ app.views.Article = Backbone.Marionette.ItemView.extend({
 			var ts = moment(date).unix();
 
 			var post = {
-				titre: $( "#article_form input[name=titre]" ).val(),
-				resume: $( "#article_form textarea[name=resume]" ).val(),
+				titre: $( "#article_form input[name=titre]" ).val(), //.replace(/'/g,"&#39;"),
+				resume: $( "#article_form textarea[name=resume]" ).val(), //.replace(/'/g,"&#39;"),
 				date: ts,
 				folder: $( "#article_form input[name=folder]" ).val(),
 				tag: $( "#article_form select[name=tag]" ).val(),
 				type: $( "#article_form select[name=type]" ).val(),
-				files: $( "#article_form input[name=files]" ).val()
-			}
+				files: $( "#article_form input[name=files]" ).val(),
+				// iframe: $( "#article_form input[name=iframe]" ).val().replace(/'/g,"&#39;")
+			};
 			console.log(post)
 
 

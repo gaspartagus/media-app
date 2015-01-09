@@ -80,7 +80,8 @@ var myController = Backbone.Router.extend({
 		Backbone.history.navigate("associations/"+ tag + "/" + type);
 	},
 	association: function(nom){
-		var assoc = new app.models.Association({ nom: nom });
+		var ass = _.where(localAssos, { nom: nom })[0]
+		var assoc = new app.models.Association(ass );
 		app.mainRegion.show(new app.views.Association({ model: assoc }));
 		showTitle(nom)
 		Backbone.history.navigate("associations/"+nom);
@@ -88,8 +89,14 @@ var myController = Backbone.Router.extend({
 	article: function(id){
 		var article = _.where(localArticles, {_id: parseInt(id)})[0];
 		console.log(localArticles);
-		var folder = article.folder;
-		var col = _.map(JSON.parse(article.files),function(e){return {url: e, folder: folder, _id: id};});
+		var folder = article.folder,
+			col;
+		try{
+			col = _.map(JSON.parse(article.files),function(e){return {url: e, folder: folder, _id: id};});
+			
+		} catch(err){
+			col = [];
+		}
 		var gallerie = new app.collections.Images(col);
 		var articleModel = new app.models.ArticleItem(article);
 		app.mainRegion.show(new app.views.Article({ collection: gallerie, model: articleModel }));

@@ -143,11 +143,8 @@
             <div class="action_container2 <%= liked %>">
                 <span class="glyphicon glyphicon-heart"></span>
             </div>
-            <div id="html"><%
-            if(type!='image' || true){
-                %><%= resume %><%
-            }
-            %></div>
+            <div id="html"><%= resume %></div>
+            <%= iframe %>
             <div id="gallery"></div>
 
         </script>
@@ -159,7 +156,7 @@
         <script type="text/template" id="association_template">
 
             <h1><%= nom %></h1>
-            <div><%= description %></div>
+            <div id="html"><%= description %></div>
             <div class="photos_videos_nav">
                 <div id="image" class="photos_nav">Photos</div>
                 <div id="video" class="photos_nav">Videos</div>

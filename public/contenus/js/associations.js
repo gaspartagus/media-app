@@ -69,7 +69,7 @@ app.views.Association = Backbone.Marionette.ItemView.extend({ // Vue tableau
 			
 			var post = {
 				nom: $( "#asso_form input[name=nom]" ).val(),
-				description: htmlEncode( $( "#asso_form textarea[name=description]" ).val().replace(/'/g,"&#39;") ),
+				description: $( "#asso_form textarea[name=description]" ).val().replace(/'/g,"&#39;"),
 				icone: $( "#asso_form input[name=icone]" ).val()
 			}
 			console.log(post)

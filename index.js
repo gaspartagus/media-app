@@ -18,10 +18,12 @@ var currentArticle,
 	currentArticleId;
 
 
-var log = console.log.bind(console);
+var log = console.log.bind(console),
+	genre = 0;
 
 var interval = setInterval(function(){
-	console.log('Alive');
+	genre++;
+	console.log("Alive, "  + (genre%2 ? "boy": "girl"));
 }, 2000)
 
 var allowCrossDomain = function(req, res, next) {
@@ -196,12 +198,13 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 
 	    console.log(req.body)
 
-		var update = client.query("INSERT INTO articles (titre,resume,tag,folder,files,date,type) VALUES ('"
+		var update = client.query("INSERT INTO articles (titre,resume,tag,folder,files,iframe,date,type) VALUES ('"
 			+ req.body.titre +"','"
 			+ req.body.resume +"','"
 			+ req.body.tag +"','"
 			+ req.body.folder +"','"
-			+ req.body.files +"',"
+			+ req.body.files +"',"			
+			+ req.body.iframe +"',"
 			+ req.body.date +",'"
 			+ req.body.type
 			+ "')");
@@ -219,6 +222,7 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 			+ "tag='" + req.body.tag +"',"
 			+ "folder='" + req.body.folder +"',"
 			+ "files='" + req.body.files +"',"
+			+ "iframe='" + req.body.iframe +"',"
 			+ "date='" + req.body.date +"',"
 			+ "type='" + req.body.type + "' "
 			+ "WHERE _id=" + req.params.id

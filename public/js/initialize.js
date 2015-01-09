@@ -11,6 +11,7 @@ function fetchTheNews(){
 	$.get(root + "touteslesassos",function(data){
 		localAssos = data;
 		localStorage.assos = JSON.stringify(data);
+		console.log(localAssos);
 	});
 }
 

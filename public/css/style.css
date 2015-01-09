@@ -14,7 +14,7 @@ body {
 	font-family: Futura;
 	/* color: white; */
 	text-decoration: none;
-	color: lightgrey;
+	color: rgb(44, 44, 44);
 	z-index: 0;
 	box-sizing: border-box;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -47,6 +47,7 @@ div{
     color: rgb(255, 255, 255);
 }
 #header{
+    color: lightgrey;
     z-index: 1;
 }
 #footer {
@@ -246,6 +247,13 @@ div{
 }
 .navbar .navbar-nav>li>a {
     padding-left: 0px;
+}
+#html{ 
+    text-align: left;
+    padding: 0 1em;
+}
+iframe{
+    width: 100%;
 }
 #photos .glyphicon {
     font-size: 14pt;
