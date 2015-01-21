@@ -49,12 +49,17 @@ div{
 #header{
     color: lightgrey;
     z-index: 1;
+    background-color: #950000;
 }
 #footer {
     transition: 0.5s;
     width: 100%;
     height: 68px;
     z-index: 1;
+    background-color: #950000;
+}
+.navbar{
+    background-color: #950000;
 }
 #footer .container {
     margin: 0;
