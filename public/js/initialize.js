@@ -49,4 +49,8 @@ $(document).ready(function(){
 		localStorage.user_id = user_id;
 
 	} else user_id = parseInt(localStorage.user_id);
+
+
+
+	bouncefix.add("main");
 });
