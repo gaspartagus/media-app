@@ -50,7 +50,7 @@ var myController = Backbone.Router.extend({
 	associations: function(){
 		var associationsView = new app.views.Associations();
 		app.mainRegion.show(associationsView);
-		Backbone.history.navigate("associations");
+		Navigate("associations");
 	},
 	alaune: function(){
 		var collection = new app.collections.Articles(localArticles);
@@ -58,7 +58,7 @@ var myController = Backbone.Router.extend({
 			collection: collection
 		});
 		app.mainRegion.show(vue);
-		Backbone.history.navigate("associations/pointg/alaune");
+		Navigate("associations/pointg/alaune");
 	},
 	photosvideos: function(tag){
 		var selection = _.where(localArticles,{tag: tag});
@@ -67,7 +67,7 @@ var myController = Backbone.Router.extend({
 			collection: collection
 		});
 		app.mainRegion.show(vue);
-		Backbone.history.navigate("associations/"+tag+"/photosvideos");
+		Navigate("associations/"+tag+"/photosvideos");
 	},
 	articles: function(tag,type){
 		var selection = _.where(localArticles,{tag: tag, type: type});
@@ -77,14 +77,14 @@ var myController = Backbone.Router.extend({
 		});
 		app.mainRegion.show(articlesView);
 		showTitle(tag);
-		Backbone.history.navigate("associations/"+ tag + "/" + type);
+		Navigate("associations/"+ tag + "/" + type);
 	},
 	association: function(nom){
 		var ass = _.where(localAssos, { nom: nom })[0]
 		var assoc = new app.models.Association(ass );
 		app.mainRegion.show(new app.views.Association({ model: assoc }));
 		showTitle(nom)
-		Backbone.history.navigate("associations/"+nom);
+		Navigate("associations/"+nom);
 	},
 	article: function(id){
 		var article = _.where(localArticles, {_id: parseInt(id)})[0];
@@ -101,7 +101,7 @@ var myController = Backbone.Router.extend({
 		var articleModel = new app.models.ArticleItem(article);
 		app.mainRegion.show(new app.views.Article({ collection: gallerie, model: articleModel }));
 		showTitle(article.titre);
-		Backbone.history.navigate("article/"+ id);
+		Navigate("article/"+ id);
 	},
 	gallerie: function(id,focus){
 		var article = _.where(localArticles, {_id: parseInt(id)})[0],
@@ -113,7 +113,7 @@ var myController = Backbone.Router.extend({
 		app.mainRegion.show(new app.views.Gallerie({ model: album }));
 		$("#footer").css("transform","translateY(150px)");
 
-		Backbone.history.navigate("article/"+ id + "/" + focus);
+		Navigate("article/"+ id + "/" + focus);
 	},
 	favoris: function() {
 		var selection = localArticles.filter(function(el){
@@ -125,7 +125,7 @@ var myController = Backbone.Router.extend({
 		});
 		app.mainRegion.show(articlesView);
 
-		Backbone.history.navigate("favoris");
+		Navigate("favoris");
 
 	},
 	bestof: function() {
@@ -150,7 +150,7 @@ var myController = Backbone.Router.extend({
 			});
 			app.mainRegion.show(articlesView);
 
-			Backbone.history.navigate("bestof");
+			Navigate("bestof");
 
 		})
 
@@ -182,3 +182,8 @@ app.controller = new myController();
 // app.router = new Router();
 
 Backbone.history.start();// { pushState: true });
+
+function Navigate(fragment){
+	Backbone.history.navigate(fragment);
+	iosHistory.push(fragment);
+}

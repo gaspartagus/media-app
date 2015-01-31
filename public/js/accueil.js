@@ -16,7 +16,7 @@ app.views.Accueil = Backbone.Marionette.ItemView.extend({
 });
 
 app.addInitializer(function(options){
-	app.controller.accueil();
+	// app.controller.accueil();
 });
 
 app.views.MenuTop = Backbone.Marionette.ItemView.extend({
@@ -29,7 +29,11 @@ app.views.MenuTop = Backbone.Marionette.ItemView.extend({
 			if($(".main .gallerie").length)
 				$("#footer").css("transform","translateY(0)");
 			
-			Backbone.history.history.back()
+			if(Backbone.history.history.length <= 2)
+				app.controller.navigate(iosHistory.pop());
+			else
+				Backbone.history.history.back();
+
 		},
 		'click #home': function(evt) {
 			app.controller.accueil();

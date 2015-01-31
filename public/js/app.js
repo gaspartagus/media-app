@@ -16,6 +16,21 @@ app.addRegions({
 
 });
 
+localArticles = JSON.parse(localStorage.articles);
+localAssos = JSON.parse(localStorage.assos);
+
+if(!localStorage.getItem("favoris")) {
+	favoris = [];
+} else favoris = JSON.parse(localStorage.favoris);
+
+if(!localStorage.getItem("user_id")) {
+	user_id = Math.floor(Math.random()*1000000000);
+	localStorage.user_id = user_id;
+
+} else user_id = parseInt(localStorage.user_id);
+
+var iosHistory = [];
+
 var largeur = $('.main').width();
 var hauteur = $('.main').height();
 
