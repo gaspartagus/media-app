@@ -69,6 +69,19 @@ div{
     height: 100%;
 }
 
+#footer table {
+  width: 100%;
+  margin: 13.5px 0px;
+}
+#footer td {
+  width: 20%;
+}
+
+#footer a, a:hover, a:focus {
+  color: lightgrey;
+  text-decoration: none;
+}
+
 
 #footer ol{
     margin: 0 auto;
@@ -253,7 +266,7 @@ div{
 .navbar .navbar-nav>li>a {
     padding-left: 0px;
 }
-#html{ 
+#html{
     text-align: left;
     padding: 0 1em;
 }

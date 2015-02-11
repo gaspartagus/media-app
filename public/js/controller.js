@@ -39,6 +39,7 @@ var myController = Backbone.Router.extend({
 		"article/:id/:index": "gallerie",
 		"favoris": "favoris",
 		"bestof": 'bestof',
+		"autres": "autres"
 		// "pointg/bestof": "bestof",
 		// "pointg/favoris": "favoris"
 	},
@@ -153,6 +154,14 @@ var myController = Backbone.Router.extend({
 			Navigate("bestof");
 
 		})
+
+	},
+	autres: function() {
+	  
+		var articlesView = new app.views.Autres();
+		app.mainRegion.show(articlesView);
+
+		Navigate("autres");
 
 	}
 });

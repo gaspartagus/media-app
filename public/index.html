@@ -45,7 +45,7 @@
 
         <div class="main"></div>
 
-        <nav id="footer" class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+        <!-- nav id="footer" class="navbar navbar-default navbar-fixed-bottom" role="navigation">
             <div class="container">
                 <ol class="nav navbar-nav">
                     <li id="alaune" class="active">
@@ -80,6 +80,45 @@
                     </li>
                 </ol>
             </div>
+        </nav -->
+        <nav id="footer" class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+            <div class="container">
+                <table class="nav navbar-nav">
+                  <tr>
+                    
+                    <td id="alaune" class="active">
+                        <a>
+                            <span class="glyphicon glyphicon-globe"></span><br>
+                            A la Une
+                        </a>
+                    </td>
+                    <td id="photos" class="">
+                        <a>
+                            <span class="glyphicon glyphicon-picture"></span> <span class="glyphicon glyphicon-film"></span><br>
+                            Photos
+                        </a>
+                     </td>
+                    <td id="bestof" class="">
+                        <a>
+                            <span class="glyphicon glyphicon-star"></span><br>
+                            Best Of
+                        </a>
+                    </td>
+                    <td id="favoris" class="">
+                        <a>
+                            <span class="glyphicon glyphicon-heart"></span><br>
+                            Favoris
+                        </a>
+                    </td>
+                    <td id="autres" class="">
+                        <a>
+                            <span class="glyphicon glyphicon-th-large"></span><br>
+                            Autres
+                        </a>
+                    </td>
+                  </tr>
+                </table>
+            </div>
         </nav>
 
         <!-- === Frameworks === -->
@@ -113,6 +152,31 @@
             <div class="action_container <%= liked %>">
                 <span class="glyphicon glyphicon-heart"></span>
             </div>
+
+        </script>
+        <script type="text/template" id="autres_template">
+
+            <li class="article_item" id="news">
+              <div class="article_icon" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= image %>')">
+              </div>
+              <div class="description_container">
+                  <span class="titre">Les News</span>
+              </div>
+            </li>
+            <li class="article_item" id="sons">
+              <div class="article_icon" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= image %>')">
+              </div>
+              <div class="description_container">
+                  <span class="titre">Les Sons</span>
+              </div>
+            </li>
+            <li class="article_item">
+              <div class="article_icon" style="background-image: url('https://googledrive.com/host/<%= folder %>/<%= image %>')">
+              </div>
+              <div class="description_container">
+                  <span class="titre"> Autre chose</span>
+              </div>
+            </li>
 
         </script>
         <script type="text/template" id="associations_template">
